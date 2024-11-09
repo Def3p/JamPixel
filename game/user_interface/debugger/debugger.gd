@@ -1,6 +1,8 @@
 class_name DebugMenu
 extends Control
 
+@export var enabled: bool = true
+
 var is_debug = false
 
 var label_data: Array = []
@@ -16,10 +18,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if !enabled: return
 	if Input.is_action_just_pressed("open_debug_menu"): is_debug = !is_debug
 	self.visible = is_debug
 
 
-func data_initialization(label_number: int, input_data):
+func data_initialization(label_number: int, input_data: String):
 	label_list[label_number].text = ready_label_names[label_number]
 	label_list[label_number].text += str(input_data)
