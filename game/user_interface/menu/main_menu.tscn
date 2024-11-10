@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b512tyjmgxou4"]
+[gd_scene load_steps=10 format=3 uid="uid://b512tyjmgxou4"]
 
 [ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="1_dk1xw"]
+[ext_resource type="PackedScene" uid="uid://cnh7qqm7irv58" path="res://scenes/levels/test/test_level.tscn" id="2_85p06"]
 [ext_resource type="Texture2D" uid="uid://7vtism8qar8h" path="res://assets/art/test/godot_mini.jpg" id="2_avgqo"]
 [ext_resource type="Texture2D" uid="uid://djqfeoecydtu3" path="res://assets/art/sky_texture/2k_stars_milky_way.jpg" id="3_ahtf8"]
 
@@ -25,6 +26,7 @@ tonemap_mode = 2
 
 [node name="MainMenu" type="Node"]
 script = ExtResource("1_dk1xw")
+play_tree = ExtResource("2_85p06")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
@@ -73,7 +75,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6974)
 current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="View"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.09842)
+transform = Transform3D(1, 0, 0, 0, 0.930046, -0.367443, 0, 0.367443, 0.930046, 0, 0, -1.09842)
 mesh = SubResource("BoxMesh_bf0xu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="View"]
