@@ -36,3 +36,85 @@ environment = SubResource("Environment_k1b8v")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(-0.796065, 0, 0.605211, 0.444563, 0.678544, 0.584757, -0.410662, 0.734559, -0.540166, 0, 6.03528, 0)
 shadow_enabled = true
+
+[node name="csg_mehes" type="Node3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523082, 0.0694807, -0.64222)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 1, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523082, 0.141014, -1.82118)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 1.14307, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523082, 0.256187, -2.73901)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 1.37341, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523082, 0.350761, -3.62438)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 1.56256, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523082, 0.503578, -4.59191)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 1.86819, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.523082, 0.626312, -5.28623)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 2.11366, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(0.994852, 0, 0.101334, 0, 1, 0, -0.101334, 0, 0.994852, 0.523082, 1.71524, -10.6762)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 0.757027, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(0.994852, 0, 0.101334, 0, 1, 0, -0.101334, 0, 0.994852, 7.41481, 1.71524, -7.70829)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 0.757027, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(0.994852, 0, 0.101334, 0, 1, 0, -0.101334, 0, 0.994852, 7.41481, 2.44343, -2.4693)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 0.757027, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(0.994852, 0, 0.101334, 0, 1, 0, -0.101334, 0, 0.994852, 3.90333, 2.89804, -0.0700235)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(1.35553, 0.757027, 1.1729)
+material = SubResource("StandardMaterial3D_tc8xp")
