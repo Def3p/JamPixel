@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://1k67il0esykk"]
+
+[ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
+[ext_resource type="Texture2D" uid="uid://2pfqh7lls8y6" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_black_512x512.png" id="1_pdwl5"]
+[ext_resource type="Script" path="res://scenes/entity/player/components/camera_componemt.gd" id="3_006l0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adggw"]
+albedo_texture = ExtResource("1_pdwl5")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_c1l25"]
+material = SubResource("StandardMaterial3D_adggw")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vknlh"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_mask = 15
+script = ExtResource("1_ih8mb")
+
+[node name="Meshes" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_c1l25")
+skeleton = NodePath("../..")
+
+[node name="CameraNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraNode"]
+
+[node name="Componetns" type="Node" parent="."]
+
+[node name="Camera_Componemt" type="Node" parent="Componetns" node_paths=PackedStringArray("player", "camera_node", "camera")]
+script = ExtResource("3_006l0")
+player = NodePath("../..")
+camera_node = NodePath("../../CameraNode")
+camera = NodePath("../../CameraNode/Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_vknlh")
+
+[node name="2D" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="2D"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 1

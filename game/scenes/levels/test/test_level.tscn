@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnh7qqm7irv58"]
+
+[ext_resource type="Texture2D" uid="uid://cuci0pplrfwil" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="1_kj382"]
+[ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="2_tc66b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc8xp"]
+albedo_texture = ExtResource("1_kj382")
+uv1_triplanar = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qb5f4"]
+
+[sub_resource type="Sky" id="Sky_qq0ji"]
+sky_material = SubResource("ProceduralSkyMaterial_qb5f4")
+
+[sub_resource type="Environment" id="Environment_k1b8v"]
+background_mode = 2
+sky = SubResource("Sky_qq0ji")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0140839, 0, -0.0279274)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(32.1167, 1, 32.0805)
+material = SubResource("StandardMaterial3D_tc8xp")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_tc66b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0376194, 1.07462, 1.90758)
+def_speed = 5.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_k1b8v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.796065, 0, 0.605211, 0.444563, 0.678544, 0.584757, -0.410662, 0.734559, -0.540166, 0, 6.03528, 0)
+shadow_enabled = true
