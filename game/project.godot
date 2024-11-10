@@ -17,7 +17,10 @@ config/icon="res://icon.svg"
 [autoload]
 
 debug_output="*res://user_interface/debugger/debugger.tscn"
-audio_manager="*res://component/audio_manager/audio_manager.tscn"
+
+[gui]
+
+theme/custom_font="res://assets/fonts/BebasNeue-Regular.ttf"
 
 [input]
 
@@ -39,3 +42,4 @@ open_debug_menu={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/size=16384

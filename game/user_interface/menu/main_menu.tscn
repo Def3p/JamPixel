@@ -1,9 +1,87 @@
-[gd_scene format=3 uid="uid://b512tyjmgxou4"]
+[gd_scene load_steps=9 format=3 uid="uid://b512tyjmgxou4"]
 
-[node name="MainMenu" type="Control"]
+[ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="1_dk1xw"]
+[ext_resource type="Texture2D" uid="uid://7vtism8qar8h" path="res://assets/art/test/godot_mini.jpg" id="2_avgqo"]
+[ext_resource type="Texture2D" uid="uid://djqfeoecydtu3" path="res://assets/art/sky_texture/2k_stars_milky_way.jpg" id="3_ahtf8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skt8v"]
+albedo_texture = ExtResource("2_avgqo")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bf0xu"]
+material = SubResource("StandardMaterial3D_skt8v")
+size = Vector3(3, 2, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xsv4s"]
+panorama = ExtResource("3_ahtf8")
+
+[sub_resource type="Sky" id="Sky_b4kku"]
+sky_material = SubResource("PanoramaSkyMaterial_xsv4s")
+
+[sub_resource type="Environment" id="Environment_ua2hl"]
+background_mode = 2
+sky = SubResource("Sky_b4kku")
+tonemap_mode = 2
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_dk1xw")
+
+[node name="Menu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxButtons" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.348
+anchor_top = 0.58
+anchor_right = 0.652
+anchor_bottom = 0.864
+offset_left = 0.103973
+offset_top = 0.12796
+offset_right = -0.104004
+offset_bottom = -0.127991
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="Button" parent="Menu/VBoxButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="Settings" type="Button" parent="Menu/VBoxButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+
+[node name="Exit" type="Button" parent="Menu/VBoxButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="View" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6974)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.09842)
+mesh = SubResource("BoxMesh_bf0xu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="View"]
+environment = SubResource("Environment_ua2hl")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="View"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.29098)
+
+[connection signal="pressed" from="Menu/VBoxButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/VBoxButtons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/VBoxButtons/Exit" to="." method="_on_exit_pressed"]
