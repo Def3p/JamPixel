@@ -27,6 +27,14 @@ open_debug_menu={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="player"
+3d_physics/layer_2="enviroment"
+3d_physics/layer_3="enemy"
+3d_physics/layer_4="phys"
+3d_physics/layer_5="usable object"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
