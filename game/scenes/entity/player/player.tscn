@@ -1,16 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=10 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
-[ext_resource type="Texture2D" uid="uid://2pfqh7lls8y6" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_black_512x512.png" id="1_pdwl5"]
+[ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/camera_componemt.gd" id="3_006l0"]
+[ext_resource type="PackedScene" uid="uid://ck60qxk0frxvx" path="res://components/hitbox_component/hitbox.tscn" id="4_h1kta"]
+[ext_resource type="Script" path="res://scenes/entity/player/components/parkpour_component.gd" id="4_pvs7c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adggw"]
-albedo_texture = ExtResource("1_pdwl5")
+albedo_texture = ExtResource("2_3sjsy")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c1l25"]
 material = SubResource("StandardMaterial3D_adggw")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vknlh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_irji6"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 15
@@ -24,11 +28,6 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 
 mesh = SubResource("CapsuleMesh_c1l25")
 skeleton = NodePath("../..")
 
-[node name="CameraNode" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraNode"]
-
 [node name="Componetns" type="Node" parent="."]
 
 [node name="Camera_Componemt" type="Node" parent="Componetns" node_paths=PackedStringArray("player", "camera_node", "camera")]
@@ -36,6 +35,15 @@ script = ExtResource("3_006l0")
 player = NodePath("../..")
 camera_node = NodePath("../../CameraNode")
 camera = NodePath("../../CameraNode/Camera3D")
+
+[node name="Parkpour_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("_MovementComponent")]
+script = ExtResource("4_pvs7c")
+_MovementComponent = NodePath("../..")
+
+[node name="CameraNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraNode"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -70,3 +78,32 @@ vertical_alignment = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="WallHitbox" parent="." instance=ExtResource("4_h1kta")]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.877345, 1.00707, 0)
+shape = SubResource("CapsuleShape3D_irji6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.877, 1.007, 0)
+shape = SubResource("CapsuleShape3D_irji6")
+
+[node name="left_raycast" type="RayCast3D" parent="WallHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06767, 0)
+target_position = Vector3(1.385, 0, 0)
+collision_mask = 32
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="right_raycast" type="RayCast3D" parent="WallHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06767, 0)
+target_position = Vector3(-1.385, 0, 0)
+collision_mask = 32
+hit_from_inside = true
+collide_with_areas = true
+
+[connection signal="area_entered" from="WallHitbox" to="Componetns/Parkpour_Component" method="_on_wall_hitbox_area_entered"]
+[connection signal="area_exited" from="WallHitbox" to="Componetns/Parkpour_Component" method="_on_wall_hitbox_area_exited"]
