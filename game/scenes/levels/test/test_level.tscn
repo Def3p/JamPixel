@@ -225,3 +225,11 @@ collision_layer = 2
 collision_mask = 0
 size = Vector3(2.76947, 4.08697, 2.99072)
 material = SubResource("StandardMaterial3D_tttuk")
+
+[node name="CSGBox3D16" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7126, 18.9923, -3.7423)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(5.67331, 1.28958, 7.2063)
+material = SubResource("StandardMaterial3D_tttuk")
