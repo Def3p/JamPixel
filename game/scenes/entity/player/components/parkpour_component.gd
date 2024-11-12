@@ -35,11 +35,11 @@ func run_on_wall(delta):
 						var parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, directions[0].global_rotation.y)
 						var forward_direction = parkour_dir.normalized()
 						_MovementComponent.velocity = forward_direction * 200 * delta * 20
-						_MovementComponent.velocity.y = 20
+						_MovementComponent.velocity.y = 13
 					elif wall_raycasts[3].is_colliding() or wall_raycasts[4].is_colliding() or wall_raycasts[5].is_colliding():
 						var parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, directions[1].global_rotation.y)
 						var forward_direction = parkour_dir.normalized()
 						_MovementComponent.velocity = forward_direction * 200 * delta * 20
-						_MovementComponent.velocity.y = 20
+						_MovementComponent.velocity.y = 13
 	else:
 		_MovementComponent.wall_run = false

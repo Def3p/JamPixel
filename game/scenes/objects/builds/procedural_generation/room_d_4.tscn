@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://66bsxeywr7wf"]
+
+[ext_resource type="Texture2D" uid="uid://b8i05aw3uq5ei" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="1_v2owr"]
+[ext_resource type="Texture2D" uid="uid://lse2aaqh3ut8" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_pink_512x512.png" id="2_yvege"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4dd5h"]
+albedo_color = Color(0.450649, 0.450648, 0.450648, 1)
+albedo_texture = ExtResource("1_v2owr")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gucal"]
+albedo_texture = ExtResource("2_yvege")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="room_d4" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00473022, 3.06247, -1.00549)
+size = Vector3(10.0952, 7.12494, 7.98755)
+material = SubResource("StandardMaterial3D_4dd5h")
+
+[node name="door" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.63714, 3.77547, 0.259277)
+size = Vector3(0.797363, 3.16248, 2.55762)
+material = SubResource("StandardMaterial3D_gucal")
+
+[node name="door2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55295, 3.77547, 0.259277)
+size = Vector3(0.842224, 3.16248, 2.55762)
+material = SubResource("StandardMaterial3D_gucal")
+
+[node name="door3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0390058, 3.77547, -3.61622)
+size = Vector3(1.9585, 3.16248, 0.726196)
+material = SubResource("StandardMaterial3D_gucal")
+
+[node name="door4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0390058, 3.77547, 3.61579)
+size = Vector3(1.9585, 3.16248, 0.726196)
+material = SubResource("StandardMaterial3D_gucal")
