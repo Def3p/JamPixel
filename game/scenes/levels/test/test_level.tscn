@@ -190,11 +190,11 @@ size = Vector3(32.1167, 1, 32.0805)
 material = SubResource("StandardMaterial3D_tc8xp")
 
 [node name="CSGBox3D12" type="CSGBox3D" parent="csg_mehes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1071, 20.0173, -4.86517)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1071, 20.0173, -6.29158)
 use_collision = true
 collision_layer = 2
 collision_mask = 0
-size = Vector3(1, 14.0608, 27.9135)
+size = Vector3(1, 14.0608, 30.7663)
 material = SubResource("StandardMaterial3D_tttuk")
 
 [node name="HitboxComponent" type="Area3D" parent="csg_mehes/CSGBox3D12"]
@@ -204,7 +204,7 @@ script = ExtResource("4_1v5ei")
 type = "wall"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D12/HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.484375, 0.357302, 5.28691)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.484375, 0.357302, 6.77868)
 shape = SubResource("BoxShape3D_h6s6x")
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="csg_mehes"]
@@ -215,15 +215,60 @@ collision_mask = 0
 size = Vector3(1, 14.0608, 27.9135)
 material = SubResource("StandardMaterial3D_tttuk")
 
-[node name="HitboxComponent" type="Area3D" parent="csg_mehes/CSGBox3D18"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96882, 2.18068, 3.49488)
+[node name="CSGBox3D19" type="CSGBox3D" parent="csg_mehes/CSGBox3D18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561203, 1.4446, 5.9642)
+size = Vector3(0.279297, 1, 2.52323)
+material = SubResource("StandardMaterial3D_yjq5u")
+
+[node name="HitboxComponent" type="Area3D" parent="csg_mehes/CSGBox3D18/CSGBox3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40762, 0.736078, -2.46932)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("4_1v5ei")
 type = "wall"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D18/HitboxComponent"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D18/CSGBox3D19/HitboxComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6737, -0.656788, 2.2641)
+shape = SubResource("BoxShape3D_h6s6x")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -41.7831, 20.0173, -29.8589)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(1, 14.0608, 27.9135)
+material = SubResource("StandardMaterial3D_tttuk")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="csg_mehes/CSGBox3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561203, 1.4446, 5.9642)
+size = Vector3(0.279297, 1, 2.52323)
+material = SubResource("StandardMaterial3D_yjq5u")
+
+[node name="HitboxComponent" type="Area3D" parent="csg_mehes/CSGBox3D19/CSGBox3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40762, 0.736078, -2.46932)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_1v5ei")
+type = "wall"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D19/CSGBox3D19/HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6737, -0.656788, 2.2641)
+shape = SubResource("BoxShape3D_h6s6x")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="csg_mehes/CSGBox3D19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.03249, 1.4446, 3.46222)
+size = Vector3(0.279297, 1, 2.52323)
+material = SubResource("StandardMaterial3D_yjq5u")
+
+[node name="HitboxComponent" type="Area3D" parent="csg_mehes/CSGBox3D19/CSGBox3D20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40762, 0.736078, -2.46932)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_1v5ei")
+type = "wall"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D19/CSGBox3D20/HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64549, -0.656788, 2.2641)
 shape = SubResource("BoxShape3D_h6s6x")
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="csg_mehes"]
@@ -266,12 +311,15 @@ collision_mask = 0
 size = Vector3(5.67331, 1.28958, 7.2063)
 material = SubResource("StandardMaterial3D_tttuk")
 
+[node name="CSGBox3D21" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.8205, 18.9923, -23.3249)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(5.67331, 1.28958, 7.2063)
+material = SubResource("StandardMaterial3D_tttuk")
+
 [node name="CSGBox3D17" type="CSGBox3D" parent="csg_mehes"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6465, 20.2736, 0.239122)
-size = Vector3(0.279297, 1, 2.52323)
-material = SubResource("StandardMaterial3D_yjq5u")
-
-[node name="CSGBox3D19" type="CSGBox3D" parent="csg_mehes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.1784, 21.4619, -10.587)
 size = Vector3(0.279297, 1, 2.52323)
 material = SubResource("StandardMaterial3D_yjq5u")

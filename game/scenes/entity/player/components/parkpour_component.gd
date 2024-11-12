@@ -5,6 +5,7 @@ extends Node
 @export var _MovementComponent : MoveMent
 
 @onready var wall_raycasts = [$"../../WallHitbox/left_raycast", $"../../WallHitbox/left_raycast2", $"../../WallHitbox/left_raycast3", $"../../WallHitbox/right_raycast", $"../../WallHitbox/right_raycast2", $"../../WallHitbox/right_raycast3"]
+@onready var directions = [$"../../WallHitbox/left", $"../../WallHitbox/right"]
 
 var want_running_on_wall = false
 
@@ -24,18 +25,21 @@ func _process(delta: float) -> void:
 		
 func run_on_wall(delta):
 	if want_running_on_wall:
-		if Input.is_action_just_pressed("go_forward") and Input.is_action_pressed("go_left") or Input.is_action_pressed("go_right"):
+		if Input.is_action_just_pressed("go_forward"):
 			_MovementComponent.wall_run = true
 			_MovementComponent.velocity += _MovementComponent.get_gravity() * delta * 0.5
 		if Input.is_action_pressed("jump"):
 			for i in wall_raycasts:
 				if i.is_colliding():
 					if wall_raycasts[0].is_colliding() or wall_raycasts[1].is_colliding() or wall_raycasts[2].is_colliding():
-						_MovementComponent.velocity.x -= 10 * delta * 70
-						_MovementComponent.velocity.y = 10
+						var parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, directions[0].global_rotation.y)
+						var forward_direction = parkour_dir.normalized()
+						_MovementComponent.velocity = forward_direction * 200 * delta * 20
+						_MovementComponent.velocity.y = 20
 					elif wall_raycasts[3].is_colliding() or wall_raycasts[4].is_colliding() or wall_raycasts[5].is_colliding():
-						_MovementComponent.velocity.y = 10
-						_MovementComponent.velocity.x += 10 * delta * 70
-						
+						var parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, directions[1].global_rotation.y)
+						var forward_direction = parkour_dir.normalized()
+						_MovementComponent.velocity = forward_direction * 200 * delta * 20
+						_MovementComponent.velocity.y = 20
 	else:
 		_MovementComponent.wall_run = false

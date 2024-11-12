@@ -10,8 +10,12 @@ var JUMP_VELOCITY = 8
 var want_jump = false
 var wall_run = false
 
+var parkour_dir
+
 func _physics_process(delta: float) -> void:
 	$"2D/FPS".text = str(Engine.get_frames_per_second())
+	parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, global_rotation.y)
+	
 	if not is_on_floor():
 		if !wall_run:
 			velocity += get_gravity() * delta * 2.5

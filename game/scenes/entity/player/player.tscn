@@ -134,5 +134,11 @@ collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
+[node name="left" type="CharacterBody3D" parent="WallHitbox"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="right" type="CharacterBody3D" parent="WallHitbox"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
 [connection signal="area_entered" from="WallHitbox" to="Componetns/Parkpour_Component" method="_on_wall_hitbox_area_entered"]
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkpour_Component" method="_on_wall_hitbox_area_exited"]
