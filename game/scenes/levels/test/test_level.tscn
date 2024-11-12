@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=4 uid="uid://cnh7qqm7irv58"]
+[gd_scene load_steps=17 format=4 uid="uid://cnh7qqm7irv58"]
 
 [ext_resource type="Texture2D" uid="uid://cuci0pplrfwil" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="1_kj382"]
 [ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="2_tc66b"]
 [ext_resource type="Texture2D" uid="uid://dxaereaihx0jp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_blue_512x512.png" id="3_kbs0d"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="4_1v5ei"]
+[ext_resource type="Texture2D" uid="uid://c1kfyjwqbs1tm" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_red_512x512.png" id="5_ayf7p"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qb5f4"]
 
@@ -62,7 +63,11 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h6s6x"]
-size = Vector3(2.87793, 5.12079, 20.2873)
+size = Vector3(1.96875, 1.66197, 3.20433)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjq5u"]
+albedo_texture = ExtResource("5_ayf7p")
+uv1_triplanar = true
 
 [node name="Node3D" type="Node3D"]
 
@@ -199,7 +204,26 @@ script = ExtResource("4_1v5ei")
 type = "wall"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D12/HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.938965, 1.8345, 3.3616)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.484375, 0.357302, 5.28691)
+shape = SubResource("BoxShape3D_h6s6x")
+
+[node name="CSGBox3D18" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.7396, 20.0173, -16.5512)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(1, 14.0608, 27.9135)
+material = SubResource("StandardMaterial3D_tttuk")
+
+[node name="HitboxComponent" type="Area3D" parent="csg_mehes/CSGBox3D18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.96882, 2.18068, 3.49488)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("4_1v5ei")
+type = "wall"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="csg_mehes/CSGBox3D18/HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6737, -0.656788, 2.2641)
 shape = SubResource("BoxShape3D_h6s6x")
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="csg_mehes"]
@@ -233,3 +257,21 @@ collision_layer = 2
 collision_mask = 0
 size = Vector3(5.67331, 1.28958, 7.2063)
 material = SubResource("StandardMaterial3D_tttuk")
+
+[node name="CSGBox3D20" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.7126, 18.9923, -23.3249)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(5.67331, 1.28958, 7.2063)
+material = SubResource("StandardMaterial3D_tttuk")
+
+[node name="CSGBox3D17" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6465, 20.2736, 0.239122)
+size = Vector3(0.279297, 1, 2.52323)
+material = SubResource("StandardMaterial3D_yjq5u")
+
+[node name="CSGBox3D19" type="CSGBox3D" parent="csg_mehes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.1784, 21.4619, -10.587)
+size = Vector3(0.279297, 1, 2.52323)
+material = SubResource("StandardMaterial3D_yjq5u")

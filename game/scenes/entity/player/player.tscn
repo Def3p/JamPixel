@@ -14,7 +14,8 @@ material = SubResource("StandardMaterial3D_adggw")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vknlh"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_irji6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6im2q"]
+size = Vector3(1.1095, 1.97218, 1)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 collision_mask = 15
@@ -84,12 +85,12 @@ collision_layer = 0
 collision_mask = 32
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.877345, 1.00707, 0)
-shape = SubResource("CapsuleShape3D_irji6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.932094, 0.999586, 0)
+shape = SubResource("BoxShape3D_6im2q")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="WallHitbox"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.877, 1.007, 0)
-shape = SubResource("CapsuleShape3D_irji6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.932, 1, 0)
+shape = SubResource("BoxShape3D_6im2q")
 
 [node name="left_raycast" type="RayCast3D" parent="WallHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06767, 0)

@@ -26,13 +26,15 @@ func run_on_wall(delta):
 	if want_running_on_wall:
 		if Input.is_action_just_pressed("go_forward") and Input.is_action_pressed("go_left") or Input.is_action_pressed("go_right"):
 			_MovementComponent.wall_run = true
-			_MovementComponent.velocity += _MovementComponent.get_gravity() * delta * 2
-		if Input.is_action_just_pressed("jump"):
+			_MovementComponent.velocity += _MovementComponent.get_gravity() * delta * 0.5
+		if Input.is_action_pressed("jump"):
 			for i in wall_raycasts:
 				if i.is_colliding():
 					if wall_raycasts[0].is_colliding() or wall_raycasts[1].is_colliding() or wall_raycasts[2].is_colliding():
 						_MovementComponent.velocity.x -= 10 * delta * 70
+						_MovementComponent.velocity.y = 10
 					elif wall_raycasts[3].is_colliding() or wall_raycasts[4].is_colliding() or wall_raycasts[5].is_colliding():
+						_MovementComponent.velocity.y = 10
 						_MovementComponent.velocity.x += 10 * delta * 70
 						
 	else:
