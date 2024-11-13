@@ -11,4 +11,4 @@ func _input(event):
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		rotation.y = clamp(rotation.y, deg_to_rad(-40), deg_to_rad(170))
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-100), deg_to_rad(100))
+		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-50), deg_to_rad(50))
