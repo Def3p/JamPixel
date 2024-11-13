@@ -2,6 +2,8 @@ class_name MoveMent
 
 extends CharacterBody3D
 
+@export var _Health_Component : HealthComponent
+
 @export var def_speed : float
 
 var speed = 5.0

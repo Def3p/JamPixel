@@ -445,4 +445,4 @@ size = Vector3(0.279297, 1, 2.52323)
 material = SubResource("StandardMaterial3D_yjq5u")
 
 [node name="TEST-ENEMY" parent="." instance=ExtResource("6_enchr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4844, 13.4653, 24.3078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6833, 13.4653, 24.7501)

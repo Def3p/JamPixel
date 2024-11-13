@@ -1,4 +1,4 @@
-class_name HealthComponent
+#class_name HealthComponent
 extends Node3D
 
 signal death
