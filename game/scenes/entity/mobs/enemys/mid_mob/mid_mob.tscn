@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgs8g38doe7tv"]
+[gd_scene load_steps=18 format=3 uid="uid://ccf4w6stcapaq"]
 
-[ext_resource type="Script" path="res://scenes/entity/mobs/enemys/test_enemy/test_enemy.gd" id="1_oij1t"]
+[ext_resource type="Script" path="res://scenes/entity/mobs/enemys/mid_mob/mid_mob.gd" id="1_brf6u"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tspvv"]
 load_path = "res://.godot/imported/logo_red_512x512.png-f185e7706697b1ea887c46839d3d9f04.s3tc.ctex"
@@ -166,11 +166,12 @@ size = Vector3(1.96906, 1.96066, 0.558838)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0u6g4"]
 radius = 10.9522
 
-[node name="TEST-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos")]
+[node name="MID-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos")]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_oij1t")
+script = ExtResource("1_brf6u")
 NavAgent = NodePath("NavigationAgent3D")
+Mob_Type = 1
 Animator = NodePath("AnimationPlayer")
 target = NodePath("Marker3D")
 spawn_bullet_pos = NodePath("Spawn_bullet")

@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var NavAgent : NavigationAgent3D
 
-var speed = 5.0
+var speed = 3.0
 
 enum States {Idle, Wardering, Walk, Attack_}
 enum Mob_Types {Light, Middle, Tank, Camicadze, Knight}
@@ -28,10 +28,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func check_mob_type():
-	match Mob_Type:
-		Mob_Types.Light:
-			if purpose:
-				_look_at()
+	if purpose:
+		_look_at()
 
 	
 	

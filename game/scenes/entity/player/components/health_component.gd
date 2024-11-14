@@ -12,9 +12,9 @@ func damage(_damage : float) -> void:
 	health -= _damage
 	
 func check_hp():
+	print(health)
 	if health <= 0:
 		pass
 
 func _on_timer_timeout() -> void:
-	print(health)
 	check_hp()

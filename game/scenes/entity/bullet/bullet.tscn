@@ -20,14 +20,17 @@ size = Vector3(1.10156, 0.204651, 0.204102)
 script = ExtResource("1_emvvb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-8.96083e-09, -0.93, 0, 0.205, -4.06516e-08, 0, 0, 0, 0.205, 0, 0, 0)
+transform = Transform3D(3.91691e-16, 4.06516e-08, 0.205, 0.205, -4.06516e-08, 0, 8.96083e-09, 0.93, -8.96083e-09, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_b2w0k")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
+collision_mask = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0507813, -0.00186157, -0.00146484)
 shape = SubResource("BoxShape3D_ja0o6")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

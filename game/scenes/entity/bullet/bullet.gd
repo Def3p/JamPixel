@@ -1,9 +1,10 @@
 extends CharacterBody3D
 
 
-var speed 
-var damage
-var delate_time
+var speed = 10
+var _damage = 1
+var delate_time = 5
+var stop = false
 
 var forwared_direction
 
@@ -13,9 +14,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity = forwared_direction * 10 * delta
+	velocity = forwared_direction * 10 * delta * 200
+	move_and_slide()
 	
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	if area is HitboxComponent and area.get_parent() == MoveMent:
-		area.get_parent()._Health_Component.damage(damage)
-		queue_free()
+	if area is HitboxComponent:
+		if !stop:
+			stop = true
+			print(_damage)
+			area.get_parent()._Health_Component.damage(_damage)
+			queue_free()
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	queue_free()

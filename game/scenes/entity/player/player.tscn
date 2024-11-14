@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=15 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
 [ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ck60qxk0frxvx" path="res://components/hitbox_component/hitbox.tscn" id="4_h1kta"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/parkpour_component.gd" id="4_pvs7c"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/health_component.gd" id="5_jdoi6"]
+[ext_resource type="Shader" path="res://assets/shaders/pixelization/sa.gdshader" id="6_0v7b8"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="6_lise4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adggw"]
@@ -13,6 +14,19 @@ albedo_texture = ExtResource("2_3sjsy")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c1l25"]
 material = SubResource("StandardMaterial3D_adggw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcdso"]
+shader = ExtResource("6_0v7b8")
+shader_parameter/quantize_size = 0.0
+shader_parameter/handle_scale = null
+shader_parameter/handle_subpixels = true
+shader_parameter/dither_enabled = false
+shader_parameter/bayer_pattern = 1.0
+shader_parameter/divisions = 1.0
+shader_parameter/contrast = 1.0
+shader_parameter/shift = 0.0
+shader_parameter/grayscale = null
+shader_parameter/use_palette = null
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vknlh"]
 
@@ -59,6 +73,16 @@ autostart = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraNode"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CameraNode/Camera3D"]
+
+[node name="ColorRect" type="ColorRect" parent="CameraNode/Camera3D/CanvasLayer"]
+material = SubResource("ShaderMaterial_vcdso")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
