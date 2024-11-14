@@ -1,7 +1,105 @@
-[gd_scene load_steps=12 format=4 uid="uid://ck4co6nljvs6"]
+[gd_scene load_steps=18 format=4 uid="uid://ck4co6nljvs6"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/weapon_manager.gd" id="1_tqeiy"]
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/gun_resource.gd" id="2_ofhir"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hu5l7"]
+size = Vector3(0.175, 0.28, 1.04)
+
+[sub_resource type="Animation" id="Animation_ed25o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.847304, -0.393945, -1.05313)]
+}
+
+[sub_resource type="Animation" id="Animation_hujt6"]
+resource_name = "change"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.191986, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.847304, -0.700456, -1.05313), Vector3(0.847, -0.443, -1.053)]
+}
+
+[sub_resource type="Animation" id="Animation_3q4gj"]
+resource_name = "reload"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(6.28319, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7sr4h"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0872665, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lyyne"]
+_data = {
+"RESET": SubResource("Animation_ed25o"),
+"change": SubResource("Animation_hujt6"),
+"reload": SubResource("Animation_3q4gj"),
+"shoot": SubResource("Animation_7sr4h")
+}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7glsv"]
 
@@ -111,7 +209,7 @@ shadow_mesh = SubResource("ArrayMesh_78orp")
 
 [node name="WeaponManager" type="Node3D" node_paths=PackedStringArray("start_weapon")]
 script = ExtResource("1_tqeiy")
-start_weapon = NodePath("WeaponsList/Gun1")
+start_weapon = NodePath("WeaponsList/GunTest")
 
 [node name="ShootRaycast" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, 0)
@@ -122,6 +220,20 @@ collide_with_areas = true
 collide_with_bodies = false
 
 [node name="WeaponsList" type="Node3D" parent="."]
+
+[node name="GunTest" type="Node3D" parent="WeaponsList" node_paths=PackedStringArray("animator")]
+script = ExtResource("2_ofhir")
+infinity = true
+animator = NodePath("AnimationPlayer")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WeaponsList/GunTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.847304, -0.393945, -1.05313)
+mesh = SubResource("BoxMesh_hu5l7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WeaponsList/GunTest"]
+libraries = {
+"": SubResource("AnimationLibrary_lyyne")
+}
 
 [node name="Gun1" type="Node3D" parent="WeaponsList"]
 transform = Transform3D(-0.15, 0, -1.31134e-08, 0, 0.15, 0, 1.31134e-08, 0, -0.15, 1.67556, -0.396397, -1.16185)
@@ -146,11 +258,3 @@ script = ExtResource("2_ofhir")
 transform = Transform3D(0.502175, 0, 0, 0, 0.603658, 0, 0, 0, 1, 0, -0.476315, 9.04193)
 mesh = SubResource("ArrayMesh_1eia6")
 skeleton = NodePath("")
-
-[node name="WheelTimer" type="Timer" parent="."]
-wait_time = 0.13
-one_shot = true
-
-[node name="Camera3D" type="Camera3D" parent="."]
-
-[connection signal="timeout" from="WheelTimer" to="." method="_on_wheel_timer_timeout"]
