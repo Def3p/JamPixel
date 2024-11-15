@@ -212,7 +212,11 @@ script = ExtResource("1_tqeiy")
 start_weapon = NodePath("WeaponsList/GunTest")
 
 [node name="ShootRaycast" type="RayCast3D" parent="."]
-target_position = Vector3(0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.849, -0.394, 0)
+target_position = Vector3(0, 0, -20)
+collision_mask = 6
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="InteractionRaycast" type="RayCast3D" parent="."]
 collision_mask = 16
@@ -239,6 +243,7 @@ libraries = {
 transform = Transform3D(-0.15, 0, -1.31134e-08, 0, 0.15, 0, 1.31134e-08, 0, -0.15, 1.67556, -0.396397, -1.16185)
 script = ExtResource("2_ofhir")
 max_ammo = 120
+damage = 20.0
 
 [node name="Cylinder_003" type="MeshInstance3D" parent="WeaponsList/Gun1"]
 transform = Transform3D(-0.0911594, 3.28709e-08, 1.48517e-08, -1.48517e-08, 1.08233e-07, -0.0911594, -1.48517e-08, -0.20176, -4.89017e-08, 5.43518, 0, 3.60126)
@@ -253,6 +258,7 @@ skeleton = NodePath("")
 [node name="Gun2" type="Node3D" parent="WeaponsList"]
 transform = Transform3D(-0.149994, 0, -0.001309, 0, 0.15, 0, 0.001309, 0, -0.149994, 0.846, -0.398, -0.137)
 script = ExtResource("2_ofhir")
+damage = 30.0
 
 [node name="Cube" type="MeshInstance3D" parent="WeaponsList/Gun2"]
 transform = Transform3D(0.502175, 0, 0, 0, 0.603658, 0, 0, 0, 1, 0, -0.476315, 9.04193)

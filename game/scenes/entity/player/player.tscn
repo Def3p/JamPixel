@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=16 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
 [ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/entity/player/components/health_component.gd" id="5_jdoi6"]
 [ext_resource type="Shader" path="res://assets/shaders/pixelization/sa.gdshader" id="6_0v7b8"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="6_lise4"]
+[ext_resource type="PackedScene" uid="uid://ck4co6nljvs6" path="res://scenes/entity/player/weapon_manager/weapon_manager.tscn" id="7_6kblb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adggw"]
 albedo_texture = ExtResource("2_3sjsy")
@@ -83,6 +84,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="WeaponManager" parent="CameraNode/Camera3D" instance=ExtResource("7_6kblb")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

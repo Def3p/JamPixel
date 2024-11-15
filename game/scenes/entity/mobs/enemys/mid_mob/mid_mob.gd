@@ -17,6 +17,7 @@ var HP = 60
 var purpose
 
 @export var state = States.Idle
+
 var load_bullet = preload("res://scenes/entity/bullet/bullet.tscn")
 
 
@@ -71,7 +72,6 @@ func shoot():
 	await get_tree().create_timer(0.5, false).timeout
 	add_bullet()
 
-	
 func add_bullet():
 	var scene = get_tree().root
 	var bullet = load_bullet.instantiate()
@@ -99,3 +99,6 @@ func _on_get_player_area_entered(area: Area3D) -> void:
 	if area.get_parent() is MoveMent:
 		state = States.Walk
 		purpose = area.get_parent()
+		
+func damage():
+	print("ай")

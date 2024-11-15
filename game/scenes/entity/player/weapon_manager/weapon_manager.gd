@@ -11,6 +11,7 @@ var weapons_list = []
 var available_weapons = []
 var current_weapon: int = 0
 var last_weapon: int = -1
+var damage
 
 @onready var weapons: Node3D = $WeaponsList
 @onready var shoot_ray: RayCast3D = $ShootRaycast
@@ -81,6 +82,7 @@ func state_machine():
 	if state == states.SHOOT:
 		var get_gun = available_weapons[current_weapon]
 		get_gun.animator.play("shoot")
+		shoot()
 
 	if state == states.RELOAD:
 		var get_gun = available_weapons[current_weapon]
@@ -91,7 +93,8 @@ func shoot():
 	var get_gun = available_weapons[current_weapon]
 	if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
 	if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
-		pass # shoot_ray.get_collider()... выстрел
+		shoot_ray.get_collider().get_parent().damage(get_gun.damage)
+		
 
 	get_gun.animator.play("shoot")
 

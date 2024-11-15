@@ -8,6 +8,7 @@ extends Node3D
 
 @export_category("Raycast")
 @export var length: float = 35.0
+@export var damage : float
 
 @export_category("Load Nodes")
 @export var animator: AnimationPlayer
