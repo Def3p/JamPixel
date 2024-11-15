@@ -11,6 +11,7 @@ var weapons_list = []
 var available_weapons = []
 var current_weapon: int = 0
 var last_weapon: int = -1
+var want_shoot = true
 var damage
 
 @onready var weapons: Node3D = $WeaponsList
@@ -90,13 +91,16 @@ func state_machine():
 
 
 func shoot():
-	var get_gun = available_weapons[current_weapon]
-	if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
-	if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
-		shoot_ray.get_collider().get_parent().damage(get_gun.damage)
-		
-
-	get_gun.animator.play("shoot")
+	if want_shoot:
+		want_shoot = false
+		var get_gun = available_weapons[current_weapon]
+		get_gun.animator.play("shoot")
+		if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
+		if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
+			print("shoot!")
+			shoot_ray.get_collider().get_parent().damage(get_gun.damage)
+		await get_tree().create_timer(get_gun.shoot_cd, false).timeout
+		want_shoot = true
 
 func animation_finished(_anim):
 	state = states.IDLE

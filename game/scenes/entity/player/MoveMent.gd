@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 		if !wall_run:
 			velocity += get_gravity() * delta * 2.5
 
-	if Input.is_action_pressed("run") and Input.is_action_pressed("go_forward"):
+	if Input.is_action_pressed("run") and !Input.is_action_pressed("go_back"):
 		speed = 10.0
 	else:
 		speed = def_speed

@@ -16,6 +16,23 @@ material = SubResource("StandardMaterial3D_x1xgs")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrf1v"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_083sf"]
+emission_shape_scale = Vector3(0.5, 0.5, 0.5)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+radial_accel_min = -2.23517e-06
+radial_accel_max = 3.0
+scale_min = 0.3
+scale_max = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo52u"]
+albedo_color = Color(1, 0.00392157, 0, 1)
+metallic = 1.0
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_k3tto"]
+material = SubResource("StandardMaterial3D_wo52u")
+
 [sub_resource type="Curve" id="Curve_tfyqy"]
 min_value = -200.0
 max_value = 200.0
@@ -37,17 +54,24 @@ scale_min = 0.1
 scale_max = 0.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo2m8"]
-albedo_color = Color(1, 0.0862745, 0.101961, 1)
+albedo_color = Color(1, 0.67451, 0, 1)
+rim_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_4tycg"]
 material = SubResource("StandardMaterial3D_uo2m8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nx7t6"]
+size = Vector3(2.25447, 1.96066, 1.10101)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0u6g4"]
+radius = 10.9522
 
 [sub_resource type="Animation" id="Animation_eq1rn"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("meshes/MeshInstance3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -59,7 +83,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CSGBox3D:rotation")
+tracks/1/path = NodePath("meshes/CSGBox3D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -68,18 +92,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, -3.14159, 0)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CSGBox3D/GPUParticles3D:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_symsq"]
 resource_name = "attack"
@@ -87,7 +99,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CSGBox3D:rotation")
+tracks/0/path = NodePath("meshes/CSGBox3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,25 +108,13 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, -3.14159, 0), Vector3(-0.388301, -3.14159, -6.17679e-08), Vector3(0, -3.14159, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("CSGBox3D/GPUParticles3D:emitting")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -128,7 +128,7 @@ resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("meshes/MeshInstance3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -143,7 +143,7 @@ resource_name = "walk"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/path = NodePath("meshes/MeshInstance3D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -164,90 +164,33 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rje5"]
 size = Vector3(1.96906, 1.96066, 0.558838)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0u6g4"]
-radius = 10.9522
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_083sf"]
-emission_shape_scale = Vector3(0.5, 0.5, 0.5)
-emission_shape = 3
-emission_box_extents = Vector3(1, 1, 1)
-radial_accel_min = -2.23517e-06
-radial_accel_max = 3.0
-scale_min = 0.3
-scale_max = 0.4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo52u"]
-albedo_color = Color(1, 0.00392157, 0, 1)
-metallic = 1.0
-metallic_specular = 0.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_k3tto"]
-material = SubResource("StandardMaterial3D_wo52u")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6ri8a"]
-size = Vector3(2.17139, 2.17139, 0.445374)
-
-[node name="MID-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos")]
+[node name="MID-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos", "blood_particle", "shoot_particle")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_brf6u")
 NavAgent = NodePath("NavigationAgent3D")
 Mob_Type = 1
 Animator = NodePath("AnimationPlayer")
-target = NodePath("Target")
-spawn_bullet_pos = NodePath("Spawn_bullet")
+target = NodePath("markers/Target")
+spawn_bullet_pos = NodePath("markers/Spawn_bullet")
+blood_particle = NodePath("particles/blood_particles")
+shoot_particle = NodePath("particles/shoot_particles")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="meshes" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="meshes"]
 transform = Transform3D(-1.94193, 0.38638, 0, -0.38638, -1.94193, 0, 0, 0, -0.00829496, 0, 1, 0)
 mesh = SubResource("BoxMesh_kcdpj")
+skeleton = NodePath("../..")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41784, 0)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="meshes"]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.692358, 0.82575, -0.22081)
 size = Vector3(0.221741, 0.250854, 1)
 material = SubResource("StandardMaterial3D_hrf1v")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="CSGBox3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, -0.0201014, 0.514346)
-emitting = false
-amount = 20
-lifetime = 0.07
-one_shot = true
-randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_agt5q")
-draw_pass_1 = SubResource("BoxMesh_4tycg")
+[node name="particles" type="Node3D" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_r8naj")
-}
-playback_default_blend_time = 0.1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00286031, 0.993838, -0.13147)
-shape = SubResource("BoxShape3D_2rje5")
-
-[node name="Get_Player" type="Area3D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Get_Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974854, 0)
-shape = SubResource("CylinderShape3D_0u6g4")
-
-[node name="Target" type="Marker3D" parent="."]
-
-[node name="check_purpose" type="Timer" parent="."]
-wait_time = 3.0
-autostart = true
-
-[node name="Spawn_bullet" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679101, 0.811148, -0.74336)
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="blood_particles" type="GPUParticles3D" parent="particles"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25979, 0)
 emitting = false
 amount = 38
@@ -256,14 +199,64 @@ one_shot = true
 process_material = SubResource("ParticleProcessMaterial_083sf")
 draw_pass_1 = SubResource("BoxMesh_k3tto")
 
+[node name="shoot_particles" type="GPUParticles3D" parent="particles"]
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.692357, 0.805649, -0.735156)
+emitting = false
+amount = 20
+lifetime = 0.07
+one_shot = true
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_agt5q")
+draw_pass_1 = SubResource("BoxMesh_4tycg")
+
+[node name="markers" type="Node3D" parent="."]
+
+[node name="Target" type="Marker3D" parent="markers"]
+
+[node name="Spawn_bullet" type="Marker3D" parent="markers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679101, 0.811148, -0.74336)
+
+[node name="timers" type="Node3D" parent="."]
+
+[node name="check_purpose" type="Timer" parent="timers"]
+wait_time = 3.0
+autostart = true
+
+[node name="check_died" type="Timer" parent="timers"]
+wait_time = 0.06
+autostart = true
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41784, 0)
+
 [node name="HitboxComponent" type="Area3D" parent="."]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("2_yjqkg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000732422, 1.0993, -0.00869751)
-shape = SubResource("BoxShape3D_6ri8a")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144349, 0.993838, -0.0838931)
+shape = SubResource("BoxShape3D_nx7t6")
 
+[node name="Get_Player" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Get_Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.974854, 0)
+shape = SubResource("CylinderShape3D_0u6g4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r8naj")
+}
+playback_default_blend_time = 0.1
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00286031, 0.993838, -0.13147)
+shape = SubResource("BoxShape3D_2rje5")
+
+[connection signal="timeout" from="timers/check_purpose" to="." method="_on_check_purpose_timeout"]
+[connection signal="timeout" from="timers/check_died" to="." method="_on_check_died_timeout"]
 [connection signal="area_entered" from="Get_Player" to="." method="_on_get_player_area_entered"]
-[connection signal="timeout" from="check_purpose" to="." method="_on_check_purpose_timeout"]

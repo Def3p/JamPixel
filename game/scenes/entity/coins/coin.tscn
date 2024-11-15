@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://4qjx35dv22jq"]
+
+[ext_resource type="Script" path="res://scenes/entity/coins/coin.gd" id="1_ogk3w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukwcw"]
+blend_mode = 1
+albedo_color = Color(0, 1, 0.2, 1)
+emission_enabled = true
+rim_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_5t5w3"]
+material = SubResource("StandardMaterial3D_ukwcw")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xy46k"]
+
+[node name="Coin" type="StaticBody3D"]
+script = ExtResource("1_ogk3w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.241275, 0, 0, 0, 0.731664, 0, 0, 0, 0.600411, 0, 0.61702, 0)
+mesh = SubResource("BoxMesh_5t5w3")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.303192, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925534, 0)
+shape = SubResource("BoxShape3D_xy46k")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

@@ -21,7 +21,7 @@ debug_output="*res://user_interface/debugger/debugger.tscn"
 
 [gui]
 
-theme/custom_font="res://assets/fonts/BebasNeue-Regular.ttf"
+theme/custom_font="res://assets/fonts/16326.ttf"
 
 [input]
 

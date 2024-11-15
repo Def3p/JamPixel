@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dxaereaihx0jp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_blue_512x512.png" id="3_kbs0d"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="4_1v5ei"]
 [ext_resource type="Texture2D" uid="uid://c1kfyjwqbs1tm" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_red_512x512.png" id="5_ayf7p"]
-[ext_resource type="PackedScene" uid="uid://dgs8g38doe7tv" path="res://scenes/entity/mobs/enemys/test_enemy/test_enemy.tscn" id="6_enchr"]
+[ext_resource type="PackedScene" uid="uid://ccf4w6stcapaq" path="res://scenes/entity/mobs/enemys/mid_mob/mid_mob.tscn" id="6_n5er6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qb5f4"]
 
@@ -444,5 +444,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6465, 20.2736, 0.239122)
 size = Vector3(0.279297, 1, 2.52323)
 material = SubResource("StandardMaterial3D_yjq5u")
 
-[node name="TEST-ENEMY" parent="." instance=ExtResource("6_enchr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6833, 13.4653, 24.7501)
+[node name="MID-ENEMY" parent="." instance=ExtResource("6_n5er6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53395, 13.4653, 21.5587)

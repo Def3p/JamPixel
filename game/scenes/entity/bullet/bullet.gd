@@ -14,6 +14,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	$MeshInstance3D.global_rotation.x -= 30
 	velocity = forwared_direction * 10 * delta * 200
 	move_and_slide()
 	

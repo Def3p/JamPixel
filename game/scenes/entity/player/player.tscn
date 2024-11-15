@@ -38,7 +38,7 @@ size = Vector3(1.1095, 1.97218, 1)
 radius = 0.606834
 
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component")]
-collision_mask = 15
+collision_mask = 7
 floor_max_angle = 1.43117
 script = ExtResource("1_ih8mb")
 _Health_Component = NodePath("Componetns/Health_Component")
@@ -86,6 +86,10 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="WeaponManager" parent="CameraNode/Camera3D" instance=ExtResource("7_6kblb")]
+
+[node name="GunTest" parent="CameraNode/Camera3D/WeaponManager/WeaponsList" index="0"]
+shoot_cd = 0.1
+damage = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -192,3 +196,5 @@ shape = SubResource("CapsuleShape3D_eb13h")
 [connection signal="timeout" from="Componetns/Health_Component/Timer" to="Componetns/Health_Component" method="_on_timer_timeout"]
 [connection signal="area_entered" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_entered"]
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_exited"]
+
+[editable path="CameraNode/Camera3D/WeaponManager"]

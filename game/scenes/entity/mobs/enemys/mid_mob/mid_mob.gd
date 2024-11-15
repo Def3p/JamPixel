@@ -12,16 +12,22 @@ enum Mob_Types {Light, Middle, Tank, Camicadze, Knight}
 @export var target : Marker3D
 @export var spawn_bullet_pos : Marker3D
 
-var HP = 60
+@export var blood_particle : GPUParticles3D
+@export var shoot_particle : GPUParticles3D
+
+var HP = 100
 
 var purpose
 
 @export var state = States.Idle
 
+var load_coin = preload("res://scenes/entity/coins/coin.tscn")
 var load_bullet = preload("res://scenes/entity/bullet/bullet.tscn")
+var load_bone = preload("res://scenes/entity/remains/bones/Bones.tscn")
 
 
 func _physics_process(delta: float) -> void:
+	print(HP)
 	if purpose:
 		target.global_position = purpose.global_position
 	check_mob_type()
@@ -32,8 +38,6 @@ func check_mob_type():
 	if purpose:
 		_look_at()
 
-	
-	
 func change_state():
 	var pos = global_position
 	match state:
@@ -83,6 +87,7 @@ func add_bullet():
 	bullet.forwared_direction = dir
 	bullet.global_position = spawn_bullet_pos.global_position
 	bullet.global_rotation = spawn_bullet_pos.global_rotation
+	shoot_particle.emitting = true
 	bullet.reparent(scene)
 			
 	
@@ -100,5 +105,20 @@ func _on_get_player_area_entered(area: Area3D) -> void:
 		state = States.Walk
 		purpose = area.get_parent()
 		
-func damage():
-	print("ай")
+func damage(damage):
+	blood_particle.emitting = true
+	HP -= damage
+
+func _on_check_died_timeout() -> void:
+	died()
+		
+func died():
+	if HP <= 0:
+		var scene = get_tree().root
+		var coin = load_coin.instantiate()
+		var bones = load_bone.instantiate()
+		add_child(coin)
+		add_child(bones)
+		coin.reparent(scene)
+		bones.reparent(scene)
+		self.queue_free()

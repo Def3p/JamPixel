@@ -12,7 +12,6 @@ func damage(_damage : float) -> void:
 	health -= _damage
 	
 func check_hp():
-	print(health)
 	if health <= 0:
 		pass
 

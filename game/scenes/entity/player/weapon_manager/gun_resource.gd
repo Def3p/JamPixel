@@ -5,6 +5,7 @@ extends Node3D
 @export var max_ammo: int
 @export var amount_ammo: int
 @export var infinity: bool = false
+@export var shoot_cd : float
 
 @export_category("Raycast")
 @export var length: float = 35.0
