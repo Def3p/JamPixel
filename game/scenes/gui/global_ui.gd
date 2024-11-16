@@ -5,4 +5,9 @@ extends Node
 @onready var player_hud: Control = $"UI/2D"
 @onready var fps: Label = $UI/FPS
 
+func _ready() -> void: 
+	menu.hide()
+	player_hud.hide()
+	fps.show()
+
 func _process(delta: float) -> void: fps.text = str(Engine.get_frames_per_second())

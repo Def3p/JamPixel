@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 
 
 func change_camera(count_camera: int): current_camera = count_camera
-	
 
 
 func init_camera(ready = false):
