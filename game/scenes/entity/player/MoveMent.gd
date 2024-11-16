@@ -15,7 +15,6 @@ var wall_run = false
 var parkour_dir
 
 func _physics_process(delta: float) -> void:
-	$"2D/FPS".text = str(Engine.get_frames_per_second())
 	parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, global_rotation.y)
 	
 	if not is_on_floor():

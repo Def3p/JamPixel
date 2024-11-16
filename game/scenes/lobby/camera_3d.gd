@@ -10,8 +10,10 @@ var tab_rotation_x: float = -2.0
 @onready var interaction_ray: RayCast3D = $Head/Camera3D/Interaction
 @onready var tab_marker: Marker3D = $"../../Lobby_test/Marker3D"
 @onready var camera: Camera3D = $Head/Camera3D
-@onready var sub_viewport: SubViewport = $"../../../SubViewport"
+@onready var sub_viewport: SubViewport = $"../../../Game"
 @onready var lobby: Node = $"../../.."
+
+func _ready() -> void: global_ui.conversion.animation_finished.connect(animation_finished_conv)
 
 func _input(event):
 	if is_tab: return
@@ -23,7 +25,7 @@ func _input(event):
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("interaction"):
+	if Input.is_action_just_pressed("interaction") and !is_tab:
 		if interaction_ray.get_collider() is HitboxComponent:
 			interaction_ray.get_collider().get_parent().interaction(self)
 
@@ -33,13 +35,11 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, 22.0, 2.5 * delta)
 	if rotation.y - tab_rotation_y > 1 or rotation.y - tab_rotation_y < 3:
 		if head.rotation.x - tab_rotation_x > 3 or head.rotation.x - tab_rotation_x < 3:
-			if camera.fov - 22.0 < 3:
-				global_ui.conversion.play("black")
-				global_ui.conversion.animation_finished.connect(animation_finished)
+			if camera.fov - 22.0 < 3: global_ui.conversion.play("black")
 
 
-func animation_finished(anim_name: StringName) -> void:
+func animation_finished_conv(anim_name: StringName) -> void:
 	if anim_name == "black": 
 		is_tab = false
-		lobby.change_camera(1)
+		global_var.lobby.change_camera(1)
 		global_ui.conversion.play("white")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1yu4nrm4hhbv"]
+[gd_scene load_steps=12 format=3 uid="uid://d1yu4nrm4hhbv"]
 
 [ext_resource type="Script" path="res://scenes/gui/global_ui.gd" id="1_vna5m"]
+[ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="2_67q63"]
 [ext_resource type="Texture2D" uid="uid://dcn1ysglvqp1f" path="res://assets/art/ui/SETTINGS.png" id="2_p8k7v"]
 [ext_resource type="Texture2D" uid="uid://boyqb8ljgtp4s" path="res://assets/art/ui/SETTINGS_FOCUSED.png" id="3_luadt"]
 
@@ -70,6 +71,43 @@ _data = {
 "white": SubResource("Animation_8n8gr")
 }
 
+[sub_resource type="Animation" id="Animation_6jk2n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("died_screen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vakon"]
+resource_name = "died_anim"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("died_screen:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_quy6o"]
+_data = {
+"RESET": SubResource("Animation_6jk2n"),
+"died_anim": SubResource("Animation_vakon")
+}
+
 [node name="GlobalUi" type="CanvasLayer"]
 script = ExtResource("1_vna5m")
 
@@ -104,13 +142,81 @@ libraries = {
 "": SubResource("AnimationLibrary_v6l4r")
 }
 
-[node name="Menu" type="Control" parent="UI"]
+[node name="2D" type="Control" parent="UI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="pimka" type="Label" parent="UI/2D"]
+light_mask = 0
+visibility_layer = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FPS" type="Label" parent="UI/2D"]
+light_mask = 0
+visibility_layer = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="died_screen" type="ColorRect" parent="UI/2D"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="UI/2D/died_screen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 126
+text = "death"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/2D"]
+libraries = {
+"": SubResource("AnimationLibrary_quy6o")
+}
+
+[node name="Menu" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_67q63")
 
 [node name="VBoxButtons" type="VBoxContainer" parent="UI/Menu"]
 layout_mode = 1
@@ -152,3 +258,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 icon = ExtResource("2_p8k7v")
 flat = true
+
+[node name="FPS" type="Label" parent="UI"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 20.0
+
+[connection signal="pressed" from="UI/Menu/VBoxButtons/Play" to="UI/Menu" method="_on_play_pressed"]

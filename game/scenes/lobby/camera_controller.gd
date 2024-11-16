@@ -13,9 +13,7 @@ func _process(delta: float) -> void:
 	init_camera()
 
 
-func change_camera(count_camera: int):
-	if count_camera < len(camera_list) - 1: return
-	current_camera = count_camera
+func change_camera(count_camera: int): current_camera = count_camera
 	
 
 

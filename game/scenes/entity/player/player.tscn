@@ -177,6 +177,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
 [node name="Label" type="Label" parent="2D/died_screen"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 debug_output="*res://user_interface/debugger/debugger.tscn"
 global_ui="*res://scenes/gui/global_ui.tscn"
+global_var="*res://scenes/global_variables.gd"
 
 [gui]
 
