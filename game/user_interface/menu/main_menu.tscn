@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://b512tyjmgxou4"]
+[gd_scene load_steps=12 format=3 uid="uid://b512tyjmgxou4"]
 
 [ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="1_dk1xw"]
-[ext_resource type="PackedScene" uid="uid://cnh7qqm7irv58" path="res://scenes/levels/test/test_level.tscn" id="2_85p06"]
 [ext_resource type="Texture2D" uid="uid://7vtism8qar8h" path="res://assets/art/test/godot_mini.jpg" id="2_avgqo"]
 [ext_resource type="Script" path="res://user_interface/menu/view.gd" id="3_1x2ni"]
 [ext_resource type="Texture2D" uid="uid://djqfeoecydtu3" path="res://assets/art/sky_texture/2k_stars_milky_way.jpg" id="3_ahtf8"]
+[ext_resource type="Texture2D" uid="uid://dcn1ysglvqp1f" path="res://assets/art/ui/SETTINGS.png" id="5_r387x"]
+[ext_resource type="Texture2D" uid="uid://boyqb8ljgtp4s" path="res://assets/art/ui/SETTINGS_FOCUSED.png" id="6_b0acb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skt8v"]
 albedo_texture = ExtResource("2_avgqo")
@@ -26,8 +27,56 @@ sky = SubResource("Sky_xj82s")
 tonemap_mode = 2
 
 [node name="MainMenu" type="Node3D"]
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dk1xw")
-play_tree = ExtResource("2_85p06")
+
+[node name="VBoxButtons" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -86.0
+offset_right = 126.0
+offset_bottom = 86.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play" type="Button" parent="Menu/VBoxButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Play"
+
+[node name="TextureButton" type="TextureButton" parent="Menu/VBoxButtons"]
+texture_filter = 1
+layout_mode = 2
+texture_normal = ExtResource("5_r387x")
+texture_hover = ExtResource("6_b0acb")
+stretch_mode = 3
+
+[node name="Exit" type="Button" parent="Menu/VBoxButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="Settings" type="Button" parent="Menu/VBoxButtons"]
+visible = false
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+icon = ExtResource("5_r387x")
+flat = true
 
 [node name="View" type="Node3D" parent="."]
 script = ExtResource("3_1x2ni")
@@ -48,3 +97,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.29098)
 
 [node name="Camera3D" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6974)
+
+[connection signal="pressed" from="Menu/VBoxButtons/Play" to="Menu" method="_on_play_pressed"]

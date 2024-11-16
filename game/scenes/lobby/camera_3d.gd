@@ -41,5 +41,4 @@ func _physics_process(delta: float) -> void:
 func animation_finished_conv(anim_name: StringName) -> void:
 	if anim_name == "black": 
 		is_tab = false
-		global_var.lobby.change_camera(1)
 		global_ui.conversion.play("white")
