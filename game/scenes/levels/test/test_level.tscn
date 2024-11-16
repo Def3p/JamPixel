@@ -446,3 +446,9 @@ material = SubResource("StandardMaterial3D_yjq5u")
 
 [node name="MID-ENEMY" parent="." instance=ExtResource("6_n5er6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53395, 13.4653, 21.5587)
+
+[node name="MID-ENEMY2" parent="." instance=ExtResource("6_n5er6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8453, 13.4653, 4.9017)
+
+[node name="MID-ENEMY3" parent="." instance=ExtResource("6_n5er6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9495, 13.4653, 21.0458)

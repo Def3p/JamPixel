@@ -27,7 +27,6 @@ var load_bone = preload("res://scenes/entity/remains/bones/Bones.tscn")
 
 
 func _physics_process(delta: float) -> void:
-	print(HP)
 	if purpose:
 		target.global_position = purpose.global_position
 	check_mob_type()
