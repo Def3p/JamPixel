@@ -184,7 +184,7 @@ mesh = SubResource("BoxMesh_kcdpj")
 skeleton = NodePath("../..")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="meshes"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.692358, 0.82575, -0.22081)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.826, 0)
 size = Vector3(0.221741, 0.250854, 1)
 material = SubResource("StandardMaterial3D_hrf1v")
 
@@ -200,7 +200,7 @@ process_material = SubResource("ParticleProcessMaterial_083sf")
 draw_pass_1 = SubResource("BoxMesh_k3tto")
 
 [node name="shoot_particles" type="GPUParticles3D" parent="particles"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0.692357, 0.805649, -0.735156)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.806, -0.468436)
 emitting = false
 amount = 20
 lifetime = 0.07
@@ -214,7 +214,7 @@ draw_pass_1 = SubResource("BoxMesh_4tycg")
 [node name="Target" type="Marker3D" parent="markers"]
 
 [node name="Spawn_bullet" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.679101, 0.811148, -0.74336)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811, 0)
 
 [node name="timers" type="Node3D" parent="."]
 
@@ -225,6 +225,9 @@ autostart = true
 [node name="check_died" type="Timer" parent="timers"]
 wait_time = 0.06
 autostart = true
+
+[node name="shoot_timer" type="Timer" parent="timers"]
+wait_time = 0.5
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41784, 0)

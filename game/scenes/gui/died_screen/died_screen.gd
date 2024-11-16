@@ -10,4 +10,4 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	get_tree().change_scene_to_file(def_scene)
+	get_tree().change_scene_to_file.bind(def_scene).call_deferred()

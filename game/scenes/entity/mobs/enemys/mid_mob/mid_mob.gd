@@ -69,11 +69,12 @@ func shooting():
 			if state == States.Idle or States.Walk:
 				state = States.Attack_
 func shoot():
-	add_bullet()
-	await get_tree().create_timer(0.5, false).timeout
-	add_bullet()
-	await get_tree().create_timer(0.5, false).timeout
-	add_bullet()
+	for i in range(3):
+		$timers/shoot_timer.start()
+		await $timers/shoot_timer.timeout
+		add_bullet()
+		$timers/shoot_timer.stop()
+
 
 func add_bullet():
 	var scene = get_tree().root
