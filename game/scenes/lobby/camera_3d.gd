@@ -13,7 +13,9 @@ var tab_rotation_x: float = -2.0
 @onready var sub_viewport: SubViewport = $"../../../Game"
 @onready var lobby: Node = $"../../.."
 
-func _ready() -> void: global_ui.conversion.animation_finished.connect(animation_finished_conv)
+func _ready() -> void:
+	global_ui.conversion.animation_finished.connect(animation_finished_conv)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
 	if is_tab: return
@@ -42,3 +44,4 @@ func animation_finished_conv(anim_name: StringName) -> void:
 	if anim_name == "black": 
 		is_tab = false
 		global_ui.conversion.play("white")
+		get_tree().change_scene_to_file("res://scenes/levels/test/test_level.tscn")

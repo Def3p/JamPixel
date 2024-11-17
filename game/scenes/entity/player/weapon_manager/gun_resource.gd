@@ -13,3 +13,4 @@ extends Node3D
 
 @export_category("Load Nodes")
 @export var animator: AnimationPlayer
+@export var cast_weapon: PackedScene
