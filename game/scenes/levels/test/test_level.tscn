@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cnh7qqm7irv58"]
+[gd_scene load_steps=21 format=4 uid="uid://cnh7qqm7irv58"]
 
 [ext_resource type="Texture2D" uid="uid://cuci0pplrfwil" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="1_kj382"]
 [ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="2_tc66b"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c1kfyjwqbs1tm" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_red_512x512.png" id="5_ayf7p"]
 [ext_resource type="PackedScene" uid="uid://ccf4w6stcapaq" path="res://scenes/entity/mobs/enemys/mid_mob/mid_mob.tscn" id="6_n5er6"]
 [ext_resource type="PackedScene" uid="uid://b3mbofunmbm52" path="res://scenes/entity/mobs/enemys/sniper_mob/sniper_mob.tscn" id="7_co112"]
+[ext_resource type="PackedScene" uid="uid://4qxrkx2bxlpr" path="res://scenes/entity/mobs/enemys/knight_mob/knight_mob.tscn" id="8_tj56t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eysc2"]
 
@@ -79,7 +80,7 @@ uv1_triplanar = true
 [node name="Node3D" type="Node3D"]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_tc66b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.49347, 13.8871, 8.75584)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9804, 13.8871, 3.01763)
 def_speed = 5.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -447,13 +448,10 @@ size = Vector3(0.279297, 1, 2.52323)
 material = SubResource("StandardMaterial3D_yjq5u")
 
 [node name="MID-ENEMY" parent="." instance=ExtResource("6_n5er6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53395, 13.4653, 21.5587)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0462, 13.4653, 14.7519)
 
-[node name="MID-ENEMY2" parent="." instance=ExtResource("6_n5er6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8453, 13.4653, 4.9017)
+[node name="sniper-enemt" parent="." instance=ExtResource("7_co112")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0678, 13.4653, 16.9605)
 
-[node name="MID-ENEMY3" parent="." instance=ExtResource("6_n5er6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9495, 13.4653, 21.0458)
-
-[node name="SNIPER-ENEMY" parent="." instance=ExtResource("7_co112")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5051, 13.4566, 6.44014)
+[node name="KNIGHT-ENEMY" parent="." instance=ExtResource("8_tj56t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.0423, 13.4653, 19.7537)

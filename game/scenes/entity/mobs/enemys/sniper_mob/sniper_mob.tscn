@@ -89,7 +89,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("meshes/CSGBox3D:rotation")
+tracks/1/path = NodePath("meshes/GUN:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -105,7 +105,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("meshes/CSGBox3D:rotation")
+tracks/0/path = NodePath("meshes/GUN:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -170,7 +170,7 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rje5"]
 size = Vector3(1.96906, 1.96066, 0.558838)
 
-[node name="MID-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos", "shoot_collider", "blood_particle", "shoot_particle")]
+[node name="sniper-enemt" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos", "shoot_collider", "detect_collider", "blood_particle", "shoot_particle", "gun")]
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_hniyp")
@@ -178,10 +178,12 @@ NavAgent = NodePath("NavigationAgent3D")
 Mob_Type = 5
 Animator = NodePath("AnimationPlayer")
 target = NodePath("markers/Target")
-spawn_bullet_pos = NodePath("markers/Spawn_bullet")
-shoot_collider = NodePath("shoot_collider")
+spawn_bullet_pos = NodePath("meshes/GUN/Spawn_bullet")
+shoot_collider = NodePath("meshes/GUN/shoot_collider")
+detect_collider = NodePath("detect_raycast")
 blood_particle = NodePath("particles/blood_particles")
 shoot_particle = NodePath("particles/shoot_particles")
+gun = NodePath("meshes/GUN")
 
 [node name="meshes" type="Node3D" parent="."]
 
@@ -190,19 +192,29 @@ transform = Transform3D(-1.94193, 0.38638, 0, -0.38638, -1.94193, 0, 0, 0, -0.38
 mesh = SubResource("BoxMesh_eug3q")
 skeleton = NodePath("../..")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="meshes"]
+[node name="GUN" type="CSGBox3D" parent="meshes"]
 transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, -1.47323e-06, 0.826, -1.25197)
 size = Vector3(0.221741, 0.250854, 2.16223)
 material = SubResource("StandardMaterial3D_hrf1v")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="meshes/CSGBox3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="meshes/GUN"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13687e-13, 0.208508, -0.511368)
 size = Vector3(0.221741, 0.250854, 0.230743)
 material = SubResource("StandardMaterial3D_hrf1v")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="meshes/CSGBox3D/CSGBox3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="meshes/GUN/CSGBox3D2"]
 transform = Transform3D(0.0172067, 0, 7.27596e-12, 0, 0.0198946, 0, 0, 0, 28.0877, -3.83808e-05, -0.212228, 15.1392)
 mesh = SubResource("BoxMesh_he15j")
+
+[node name="Spawn_bullet" type="Marker3D" parent="meshes/GUN"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, -3.85439e-06, -0.015, 0.939244)
+
+[node name="shoot_collider" type="RayCast3D" parent="meshes/GUN"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 1.70073e-06, 5.00679e-06, -1.25197)
+target_position = Vector3(0, 0, -30)
+collision_mask = 3
+hit_from_inside = true
+collide_with_areas = true
 
 [node name="particles" type="Node3D" parent="."]
 
@@ -228,9 +240,6 @@ draw_pass_1 = SubResource("BoxMesh_4tycg")
 [node name="markers" type="Node3D" parent="."]
 
 [node name="Target" type="Marker3D" parent="markers"]
-
-[node name="Spawn_bullet" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811, -2.19121)
 
 [node name="timers" type="Node3D" parent="."]
 
@@ -275,9 +284,9 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00286031, 0.993838, -0.13147)
 shape = SubResource("BoxShape3D_2rje5")
 
-[node name="shoot_collider" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826005, 0)
-target_position = Vector3(0, 0, -30)
+[node name="detect_raycast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.796092, 0)
+target_position = Vector3(0, 0, -28.345)
 collision_mask = 3
 hit_from_inside = true
 collide_with_areas = true

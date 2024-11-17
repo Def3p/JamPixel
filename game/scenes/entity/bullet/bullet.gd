@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity = forwared_direction * 10 * delta * 300
+	velocity = forwared_direction * speed * delta * 300
 	move_and_slide()
 	
 func _on_area_3d_area_entered(area: Area3D) -> void:

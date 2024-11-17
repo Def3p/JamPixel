@@ -1,18 +1,19 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccf4w6stcapaq"]
+[gd_scene load_steps=25 format=3 uid="uid://4qxrkx2bxlpr"]
 
-[ext_resource type="Script" path="res://scenes/entity/mobs/enemys/mid_mob/mid_mob.gd" id="1_brf6u"]
+[ext_resource type="Script" path="res://scenes/entity/mobs/enemys/knight_mob/knight_mob.gd" id="1_01w8u"]
+[ext_resource type="Texture2D" uid="uid://d1iu2u42hlv8o" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_blue_512x512.png" id="2_anmkj"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="2_yjqkg"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tspvv"]
-load_path = "res://.godot/imported/logo_red_512x512.png-f185e7706697b1ea887c46839d3d9f04.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1xgs"]
-albedo_texture = SubResource("CompressedTexture2D_tspvv")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_taq74"]
+albedo_texture = ExtResource("2_anmkj")
 uv1_scale = Vector3(1.815, 1.815, 1.815)
 uv1_triplanar = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_kcdpj"]
-material = SubResource("StandardMaterial3D_x1xgs")
+[sub_resource type="BoxMesh" id="BoxMesh_7vfow"]
+material = SubResource("StandardMaterial3D_taq74")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ksc7"]
+albedo_color = Color(0.205117, 0.205117, 0.205117, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrf1v"]
 
@@ -60,11 +61,14 @@ rim_enabled = true
 [sub_resource type="BoxMesh" id="BoxMesh_4tycg"]
 material = SubResource("StandardMaterial3D_uo2m8")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ydomv"]
+size = Vector3(1, 2.12878, 1.16022)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_nx7t6"]
-size = Vector3(2.25447, 2.2376, 1.10101)
+size = Vector3(2.25447, 1.96066, 1.10101)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0u6g4"]
-radius = 10.9522
+radius = 17.8753
 
 [sub_resource type="Animation" id="Animation_eq1rn"]
 length = 0.001
@@ -83,44 +87,68 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("meshes/CSGBox3D:rotation")
+tracks/1/path = NodePath("meshes/GUN:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -3.14159, 0)]
+"values": [Vector3(-2.52903e-06, 2.74481, 1.51262)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("meshes/GUN:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.4239, 0.871062, -0.121599)]
 }
 
 [sub_resource type="Animation" id="Animation_symsq"]
 resource_name = "attack"
-length = 0.4
-tracks/0/type = "value"
+length = 0.9
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("meshes/CSGBox3D:rotation")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0), Vector3(-0.388301, -3.14159, -6.17679e-08), Vector3(0, -3.14159, 0)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.166667),
+"times": PackedFloat32Array(0.366667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"shoot"
+"method": &"attack"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("meshes/GUN:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-2.53076e-06, 2.74481, 1.51262), Vector3(0, 5.58505, 1.5132)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("meshes/GUN:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(2.17253, 0.871062, 0.355049), Vector3(1.22762, 0.871062, -1.24717), Vector3(-0.262608, 0.871062, -1.17707)]
 }
 
 [sub_resource type="Animation" id="Animation_dbjub"]
@@ -164,30 +192,35 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_2rje5"]
 size = Vector3(1.96906, 1.96066, 0.558838)
 
-[node name="MID-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos", "shoot_collider", "detect_collider", "blood_particle", "shoot_particle")]
+[node name="KNIGHT-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "attack_collider", "detect_collider", "blood_particle", "shoot_particle", "gun")]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_brf6u")
+script = ExtResource("1_01w8u")
 NavAgent = NodePath("NavigationAgent3D")
-Mob_Type = 1
+Mob_Type = 4
 Animator = NodePath("AnimationPlayer")
 target = NodePath("markers/Target")
-spawn_bullet_pos = NodePath("markers/Spawn_bullet")
-shoot_collider = NodePath("shoot_collider")
-detect_collider = NodePath("detect_raycast")
+attack_collider = NodePath("shoot_collider")
+detect_collider = NodePath("detect_collider")
 blood_particle = NodePath("particles/blood_particles")
 shoot_particle = NodePath("particles/shoot_particles")
+gun = NodePath("meshes/GUN")
 
 [node name="meshes" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="meshes"]
 transform = Transform3D(-1.94193, 0.38638, 0, -0.38638, -1.94193, 0, 0, 0, -0.388257, 0, 1, -0.144407)
-mesh = SubResource("BoxMesh_kcdpj")
+mesh = SubResource("BoxMesh_7vfow")
 skeleton = NodePath("../..")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="meshes"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.826, 0)
-size = Vector3(0.221741, 0.250854, 1)
+[node name="CSGBox3D" type="CSGBox3D" parent="meshes/MeshInstance3D"]
+transform = Transform3D(0.999989, -4.47029e-08, 0, 4.47029e-08, 0.999989, 0, 0, 0, 1, -0.0151224, 0.664154, -0.177277)
+size = Vector3(0.551575, 0.375702, 3.60773)
+material = SubResource("StandardMaterial3D_1ksc7")
+
+[node name="GUN" type="CSGBox3D" parent="meshes"]
+transform = Transform3D(-0.0536273, 0.920749, 0.386453, 0.998308, 0.0581436, 2.52903e-06, -0.0224674, 0.385799, -0.922309, 1.4239, 0.871062, -0.121599)
+size = Vector3(0.0517885, 3.37137, 0.328033)
 material = SubResource("StandardMaterial3D_hrf1v")
 
 [node name="particles" type="Node3D" parent="."]
@@ -202,7 +235,7 @@ process_material = SubResource("ParticleProcessMaterial_083sf")
 draw_pass_1 = SubResource("BoxMesh_k3tto")
 
 [node name="shoot_particles" type="GPUParticles3D" parent="particles"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.806, -0.468436)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.806, -2.29647)
 emitting = false
 amount = 20
 lifetime = 0.07
@@ -215,24 +248,21 @@ draw_pass_1 = SubResource("BoxMesh_4tycg")
 
 [node name="Target" type="Marker3D" parent="markers"]
 
-[node name="Spawn_bullet" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811, 0)
-
 [node name="timers" type="Node3D" parent="."]
-
-[node name="check_purpose" type="Timer" parent="timers"]
-wait_time = 3.0
-autostart = true
 
 [node name="check_died" type="Timer" parent="timers"]
 wait_time = 0.06
 autostart = true
 
-[node name="shoot_timer" type="Timer" parent="timers"]
-wait_time = 0.5
-
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41784, 0)
+
+[node name="attack_area" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04388, -0.847326)
+shape = SubResource("BoxShape3D_ydomv")
 
 [node name="HitboxComponent" type="Area3D" parent="."]
 collision_layer = 4
@@ -240,7 +270,7 @@ collision_mask = 0
 script = ExtResource("2_yjqkg")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="HitboxComponent"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144349, 1.09604, -0.143959)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0144349, 0.993838, -0.0838931)
 shape = SubResource("BoxShape3D_nx7t6")
 
 [node name="Get_Player" type="Area3D" parent="."]
@@ -262,19 +292,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00286031, 0.993838, -0.1314
 shape = SubResource("BoxShape3D_2rje5")
 
 [node name="shoot_collider" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826005, 0)
-target_position = Vector3(0, 0, -10.005)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013873, 0.871061, 0.105825)
+target_position = Vector3(0, 0, -2.995)
 collision_mask = 3
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="detect_raycast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12585, 0)
-target_position = Vector3(0, 0, -11.51)
+[node name="detect_collider" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.803848, 0)
+target_position = Vector3(0, 0, -18.195)
 collision_mask = 3
 hit_from_inside = true
 collide_with_areas = true
 
-[connection signal="timeout" from="timers/check_purpose" to="." method="_on_check_purpose_timeout"]
 [connection signal="timeout" from="timers/check_died" to="." method="_on_check_died_timeout"]
+[connection signal="area_entered" from="attack_area" to="." method="_on_attack_area_area_entered"]
 [connection signal="area_entered" from="Get_Player" to="." method="_on_get_player_area_entered"]

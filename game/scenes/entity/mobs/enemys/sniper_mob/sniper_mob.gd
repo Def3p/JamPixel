@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var NavAgent : NavigationAgent3D
 
-var speed = 1.0
+var speed = 2.0
 
 enum States {Idle, Wardering, Walk, Attack_}
 enum Mob_Types {Light, Middle, Tank, Camicadze, Knight, Sniper}
@@ -12,13 +12,16 @@ enum Mob_Types {Light, Middle, Tank, Camicadze, Knight, Sniper}
 @export var target : Marker3D
 @export var spawn_bullet_pos : Marker3D
 @export var shoot_collider : RayCast3D
+@export var detect_collider : RayCast3D
 
 @export var blood_particle : GPUParticles3D
 @export var shoot_particle : GPUParticles3D
+@export var gun : Node3D
 
 var HP = 50
 
 var purpose
+var possible_purpose
 
 @export var state = States.Idle
 
@@ -35,9 +38,10 @@ func _physics_process(delta: float) -> void:
 	check_mob_type()
 	change_state()
 	move_and_slide()
+	detect_player()
 	
 func check_mob_type():
-	if purpose:
+	if purpose or possible_purpose:
 		_look_at()
 
 func change_state():
@@ -84,7 +88,7 @@ func add_bullet():
 	var bullet = load_bullet.instantiate()
 	add_child(bullet)
 	var dir = Vector3(0,0,-1,).rotated(Vector3.UP, global_rotation.y)
-	bullet.speed = 200
+	bullet.speed = 15
 	bullet._damage = 60
 	bullet.delate_time = 2
 	bullet.forwared_direction = dir
@@ -96,18 +100,26 @@ func add_bullet():
 	
 	
 func _look_at():
-	var a = Quaternion(transform.basis)
-	var po = target.global_position
-	po.y = transform.origin.y
-	var b = Quaternion(transform.looking_at(po, Vector3.UP).basis)
-	var c = a.slerp(b, 0.2)
-	transform.basis = Basis(c)
-
-	
-func _on_get_player_area_entered(area: Area3D) -> void:
-	if area.get_parent() is MoveMent:
+	if purpose:
+		var a = Quaternion(transform.basis)
+		var po = target.global_position
+		po.y = transform.origin.y
+		var b = Quaternion(transform.looking_at(po, Vector3.UP).basis)
+		var c = a.slerp(b, 0.2)
+		transform.basis = Basis(c)
+	if possible_purpose:
+		detect_collider.look_at(possible_purpose.global_position)
+		
+func detect_player():
+	if detect_collider.is_colliding() and detect_collider.get_collider() is HitboxComponent and possible_purpose:
+		purpose = detect_collider.get_collider().get_parent()
 		state = States.Walk
-		purpose = area.get_parent()
+		possible_purpose = null
+		
+func _on_get_player_area_entered(area: Area3D) -> void:
+	if !possible_purpose:
+		if area.get_parent() is MoveMent:
+			possible_purpose = area.get_parent()
 		
 func damage(damage):
 	blood_particle.emitting = true

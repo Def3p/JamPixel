@@ -126,7 +126,6 @@ func shoot():
 		get_gun.animator.play("shoot")
 		if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
 		if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
-			print("shoot!")
 			shoot_ray.get_collider().get_parent().damage(get_gun.damage)
 
 		#var cast_point
