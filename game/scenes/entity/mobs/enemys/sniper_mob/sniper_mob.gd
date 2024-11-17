@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var NavAgent : NavigationAgent3D
 
-var speed = 3.0
+var speed = 1.0
 
 enum States {Idle, Wardering, Walk, Attack_}
 enum Mob_Types {Light, Middle, Tank, Camicadze, Knight, Sniper}
@@ -16,7 +16,7 @@ enum Mob_Types {Light, Middle, Tank, Camicadze, Knight, Sniper}
 @export var blood_particle : GPUParticles3D
 @export var shoot_particle : GPUParticles3D
 
-var HP = 100
+var HP = 50
 
 var purpose
 
@@ -28,6 +28,8 @@ var load_bone = preload("res://scenes/entity/remains/bones/Bones.tscn")
 
 
 func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta * 2.5
 	if purpose:
 		target.global_position = purpose.global_position
 	check_mob_type()
@@ -46,17 +48,17 @@ func change_state():
 			var next_pos = NavAgent.get_next_path_position()
 			velocity  = (next_pos - global_transform.origin).normalized() * speed
 			Animator.play("walk")
-			if self.global_position.distance_to(target.global_position) <= 10:
+			if self.global_position.distance_to(target.global_position) <= 15:
 				state = States.Idle
 		States.Idle:
 			Animator.play("idle")
 			velocity = Vector3(0, 0, 0)
-			if self.global_position.distance_to(target.global_position) > 11:
+			if self.global_position.distance_to(target.global_position) > 16:
 				state = States.Walk
 		States.Attack_:
 			NavAgent.set_target_position(target.global_position)
 			var next_pos = NavAgent.get_next_path_position()
-			velocity  = (next_pos - global_transform.origin).normalized() * speed * 0.2
+			velocity  = (next_pos - global_transform.origin).normalized() * speed * 0.0
 			Animator.play("attack")
 			await Animator.animation_finished
 			state = States.Idle
@@ -71,11 +73,10 @@ func shooting():
 			if state == States.Idle or States.Walk:
 				state = States.Attack_
 func shoot():
-	for i in range(3):
-		$timers/shoot_timer.start()
-		await $timers/shoot_timer.timeout
-		add_bullet()
-		$timers/shoot_timer.stop()
+	$timers/shoot_timer.start()
+	await $timers/shoot_timer.timeout
+	add_bullet()
+	$timers/shoot_timer.stop()
 
 
 func add_bullet():
@@ -83,9 +84,9 @@ func add_bullet():
 	var bullet = load_bullet.instantiate()
 	add_child(bullet)
 	var dir = Vector3(0,0,-1,).rotated(Vector3.UP, global_rotation.y)
-	bullet.speed = 100
-	bullet._damage = 10
-	bullet.delate_time = 5
+	bullet.speed = 200
+	bullet._damage = 60
+	bullet.delate_time = 2
 	bullet.forwared_direction = dir
 	bullet.global_position = spawn_bullet_pos.global_position
 	bullet.global_rotation = spawn_bullet_pos.global_rotation

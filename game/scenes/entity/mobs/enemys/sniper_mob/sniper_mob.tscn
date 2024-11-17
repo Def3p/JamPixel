@@ -1,20 +1,26 @@
-[gd_scene load_steps=23 format=3 uid="uid://ccf4w6stcapaq"]
+[gd_scene load_steps=25 format=3 uid="uid://b3mbofunmbm52"]
 
-[ext_resource type="Script" path="res://scenes/entity/mobs/enemys/mid_mob/mid_mob.gd" id="1_brf6u"]
+[ext_resource type="Script" path="res://scenes/entity/mobs/enemys/sniper_mob/sniper_mob.gd" id="1_hniyp"]
+[ext_resource type="Texture2D" uid="uid://dtep8s7c2ocro" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_orange_512x512.png" id="2_ivao6"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="2_yjqkg"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tspvv"]
-load_path = "res://.godot/imported/logo_red_512x512.png-f185e7706697b1ea887c46839d3d9f04.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1xgs"]
-albedo_texture = SubResource("CompressedTexture2D_tspvv")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_evmjd"]
+albedo_texture = ExtResource("2_ivao6")
 uv1_scale = Vector3(1.815, 1.815, 1.815)
 uv1_triplanar = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_kcdpj"]
-material = SubResource("StandardMaterial3D_x1xgs")
+[sub_resource type="BoxMesh" id="BoxMesh_eug3q"]
+material = SubResource("StandardMaterial3D_evmjd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrf1v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xckng"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_he15j"]
+material = SubResource("StandardMaterial3D_xckng")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_083sf"]
 emission_shape_scale = Vector3(0.5, 0.5, 0.5)
@@ -64,7 +70,7 @@ material = SubResource("StandardMaterial3D_uo2m8")
 size = Vector3(2.25447, 1.96066, 1.10101)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0u6g4"]
-radius = 10.9522
+radius = 28.5733
 
 [sub_resource type="Animation" id="Animation_eq1rn"]
 length = 0.001
@@ -167,9 +173,9 @@ size = Vector3(1.96906, 1.96066, 0.558838)
 [node name="MID-ENEMY" type="CharacterBody3D" node_paths=PackedStringArray("NavAgent", "Animator", "target", "spawn_bullet_pos", "shoot_collider", "blood_particle", "shoot_particle")]
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_brf6u")
+script = ExtResource("1_hniyp")
 NavAgent = NodePath("NavigationAgent3D")
-Mob_Type = 1
+Mob_Type = 5
 Animator = NodePath("AnimationPlayer")
 target = NodePath("markers/Target")
 spawn_bullet_pos = NodePath("markers/Spawn_bullet")
@@ -181,13 +187,22 @@ shoot_particle = NodePath("particles/shoot_particles")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="meshes"]
 transform = Transform3D(-1.94193, 0.38638, 0, -0.38638, -1.94193, 0, 0, 0, -0.388257, 0, 1, -0.144407)
-mesh = SubResource("BoxMesh_kcdpj")
+mesh = SubResource("BoxMesh_eug3q")
 skeleton = NodePath("../..")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="meshes"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.826, 0)
-size = Vector3(0.221741, 0.250854, 1)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, -1.47323e-06, 0.826, -1.25197)
+size = Vector3(0.221741, 0.250854, 2.16223)
 material = SubResource("StandardMaterial3D_hrf1v")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="meshes/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.13687e-13, 0.208508, -0.511368)
+size = Vector3(0.221741, 0.250854, 0.230743)
+material = SubResource("StandardMaterial3D_hrf1v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="meshes/CSGBox3D/CSGBox3D2"]
+transform = Transform3D(0.0172067, 0, 7.27596e-12, 0, 0.0198946, 0, 0, 0, 28.0877, -3.83808e-05, -0.212228, 15.1392)
+mesh = SubResource("BoxMesh_he15j")
 
 [node name="particles" type="Node3D" parent="."]
 
@@ -201,7 +216,7 @@ process_material = SubResource("ParticleProcessMaterial_083sf")
 draw_pass_1 = SubResource("BoxMesh_k3tto")
 
 [node name="shoot_particles" type="GPUParticles3D" parent="particles"]
-transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.806, -0.468436)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0.806, -2.29647)
 emitting = false
 amount = 20
 lifetime = 0.07
@@ -215,7 +230,7 @@ draw_pass_1 = SubResource("BoxMesh_4tycg")
 [node name="Target" type="Marker3D" parent="markers"]
 
 [node name="Spawn_bullet" type="Marker3D" parent="markers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.811, -2.19121)
 
 [node name="timers" type="Node3D" parent="."]
 
@@ -228,7 +243,7 @@ wait_time = 0.06
 autostart = true
 
 [node name="shoot_timer" type="Timer" parent="timers"]
-wait_time = 0.5
+wait_time = 0.06
 
 [node name="Label3D" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41784, 0)
@@ -262,7 +277,7 @@ shape = SubResource("BoxShape3D_2rje5")
 
 [node name="shoot_collider" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.826005, 0)
-target_position = Vector3(0, 0, -10.005)
+target_position = Vector3(0, 0, -30)
 collision_mask = 3
 hit_from_inside = true
 collide_with_areas = true

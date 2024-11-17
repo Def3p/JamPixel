@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtep8s7c2ocro"
-path.s3tc="res://.godot/imported/logo_orange_512x512.png-9d7089b94e581264fcf01ab1e1740da5.s3tc.ctex"
+uid="uid://yr8mig4pt5gc"
+path.s3tc="res://.godot/imported/Grass_Test.png-f99b76ae8cf6e573639e88b3a8b5731d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_orange_512x512.png"
-dest_files=["res://.godot/imported/logo_orange_512x512.png-9d7089b94e581264fcf01ab1e1740da5.s3tc.ctex"]
+source_file="res://assets/art/grass_texture/Grass_Test.png"
+dest_files=["res://.godot/imported/Grass_Test.png-f99b76ae8cf6e573639e88b3a8b5731d.s3tc.ctex"]
 
 [params]
 

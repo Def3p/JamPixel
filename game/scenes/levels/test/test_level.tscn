@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cnh7qqm7irv58"]
+[gd_scene load_steps=20 format=4 uid="uid://cnh7qqm7irv58"]
 
 [ext_resource type="Texture2D" uid="uid://cuci0pplrfwil" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="1_kj382"]
 [ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="2_tc66b"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="4_1v5ei"]
 [ext_resource type="Texture2D" uid="uid://c1kfyjwqbs1tm" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_red_512x512.png" id="5_ayf7p"]
 [ext_resource type="PackedScene" uid="uid://ccf4w6stcapaq" path="res://scenes/entity/mobs/enemys/mid_mob/mid_mob.tscn" id="6_n5er6"]
+[ext_resource type="PackedScene" uid="uid://b3mbofunmbm52" path="res://scenes/entity/mobs/enemys/sniper_mob/sniper_mob.tscn" id="7_co112"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eysc2"]
 
@@ -453,3 +454,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8453, 13.4653, 4.9017)
 
 [node name="MID-ENEMY3" parent="." instance=ExtResource("6_n5er6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9495, 13.4653, 21.0458)
+
+[node name="SNIPER-ENEMY" parent="." instance=ExtResource("7_co112")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5051, 13.4566, 6.44014)

@@ -21,8 +21,8 @@ func _process(delta: float) -> void:
 
 func camera_movement(delta):
 	if Input.is_action_pressed("go_left"):
-		camera.rotation.z = lerp_angle(camera.rotation.z, 0.05, 0.1)
+		camera.rotation.z = lerp_angle(camera.rotation.z, 0.05, 5 * delta)
 	elif Input.is_action_pressed("go_right"):
-		camera.rotation.z = lerp_angle(camera.rotation.z, -0.05, 0.1)
+		camera.rotation.z = lerp_angle(camera.rotation.z, -0.05, 5 * delta)
 	elif  !Input.is_action_pressed("go_right") and !Input.is_action_just_pressed("go_left"):
-		camera.rotation.z = lerp_angle(camera.rotation.z, 0.0, 0.1)
+		camera.rotation.z = lerp_angle(camera.rotation.z, 0.0, 5 * delta)
