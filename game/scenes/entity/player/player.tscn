@@ -74,12 +74,13 @@ size = Vector3(1.1095, 1.97218, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eb13h"]
 radius = 0.606834
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component", "kayot_timer")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component", "kayot_timer", "stamine_timer")]
 collision_mask = 7
 floor_max_angle = 1.43117
 script = ExtResource("1_ih8mb")
 _Health_Component = NodePath("Componetns/Health_Component")
 kayot_timer = NodePath("Kayot_Jump")
+stamine_timer = NodePath("Stamina")
 
 [node name="Meshes" type="Node3D" parent="."]
 
@@ -249,7 +250,7 @@ offset_top = -30.0
 offset_right = 60.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+color = Color(0, 0.505882, 0.196078, 1)
 
 [node name="green2" type="ColorRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
@@ -262,7 +263,7 @@ offset_top = -30.0
 offset_right = 129.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+color = Color(0, 0.505882, 0.196078, 1)
 
 [node name="green3" type="ColorRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
@@ -275,7 +276,7 @@ offset_top = -30.0
 offset_right = 198.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+color = Color(0, 0.505882, 0.196078, 1)
 
 [node name="green4" type="ColorRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
@@ -288,7 +289,7 @@ offset_top = -30.0
 offset_right = 267.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+color = Color(0, 0.505882, 0.196078, 1)
 
 [node name="green5" type="ColorRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
@@ -301,7 +302,219 @@ offset_top = -30.0
 offset_right = 335.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+color = Color(0, 0.505882, 0.196078, 1)
+
+[node name="greys2" type="Control" parent="2D/bars/HP_bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 340.0
+offset_right = 60.0
+offset_bottom = 380.0
+grow_vertical = 2
+
+[node name="grey" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey2" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -30.0
+offset_right = 85.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey3" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 90.0
+offset_top = -30.0
+offset_right = 130.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey4" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -30.0
+offset_right = 175.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey5" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 180.0
+offset_top = -30.0
+offset_right = 220.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey6" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 225.0
+offset_top = -30.0
+offset_right = 265.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey7" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 270.0
+offset_top = -30.0
+offset_right = 310.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey8" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 315.0
+offset_top = -30.0
+offset_right = 355.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="blue" type="Control" parent="2D/bars/HP_bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 340.0
+offset_right = 60.0
+offset_bottom = 380.0
+grow_vertical = 2
+
+[node name="blue" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue2" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -30.0
+offset_right = 85.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue3" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 90.0
+offset_top = -30.0
+offset_right = 130.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue4" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 135.0
+offset_top = -30.0
+offset_right = 175.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue5" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 180.0
+offset_top = -30.0
+offset_right = 220.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue6" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 225.0
+offset_top = -30.0
+offset_right = 265.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue7" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 270.0
+offset_top = -30.0
+offset_right = 310.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
+
+[node name="blue8" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 315.0
+offset_top = -30.0
+offset_right = 355.0
+offset_bottom = 10.0
+grow_vertical = 2
+color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="pimka" type="Label" parent="2D"]
 light_mask = 0
@@ -327,6 +540,14 @@ light_mask = 0
 visibility_layer = 2
 layout_mode = 0
 offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="FPS2" type="Label" parent="2D"]
+light_mask = 0
+visibility_layer = 2
+layout_mode = 0
+offset_left = 96.0
+offset_right = 136.0
 offset_bottom = 23.0
 
 [node name="died_screen" type="ColorRect" parent="2D"]
@@ -431,9 +652,14 @@ shape = SubResource("CapsuleShape3D_eb13h")
 [node name="Kayot_Jump" type="Timer" parent="."]
 wait_time = 0.2
 
+[node name="Stamina" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+
 [connection signal="timeout" from="Componetns/Health_Component/Timer" to="Componetns/Health_Component" method="_on_timer_timeout"]
 [connection signal="area_entered" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_entered"]
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_exited"]
 [connection signal="timeout" from="Kayot_Jump" to="." method="_on_kayot_jump_timeout"]
+[connection signal="timeout" from="Stamina" to="." method="_on_stamina_timeout"]
 
 [editable path="CameraNode/Camera3D/WeaponManager"]
