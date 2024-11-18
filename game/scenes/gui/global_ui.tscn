@@ -1,9 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1yu4nrm4hhbv"]
+[gd_scene load_steps=6 format=3 uid="uid://d1yu4nrm4hhbv"]
 
 [ext_resource type="Script" path="res://scenes/gui/global_ui.gd" id="1_vna5m"]
-[ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="2_67q63"]
-[ext_resource type="Texture2D" uid="uid://dcn1ysglvqp1f" path="res://assets/art/ui/SETTINGS.png" id="2_p8k7v"]
-[ext_resource type="Texture2D" uid="uid://boyqb8ljgtp4s" path="res://assets/art/ui/SETTINGS_FOCUSED.png" id="3_luadt"]
 
 [sub_resource type="Animation" id="Animation_arq84"]
 length = 0.001
@@ -72,6 +69,7 @@ _data = {
 }
 
 [node name="HUD" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_vna5m")
 
 [node name="UI" type="Control" parent="."]
@@ -105,62 +103,6 @@ libraries = {
 "": SubResource("AnimationLibrary_v6l4r")
 }
 
-[node name="Menu" type="Control" parent="UI"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_67q63")
-
-[node name="VBoxButtons" type="VBoxContainer" parent="UI/Menu"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -126.0
-offset_top = -86.0
-offset_right = 126.0
-offset_bottom = 86.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Play" type="Button" parent="UI/Menu/VBoxButtons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Play"
-
-[node name="TextureButton" type="TextureButton" parent="UI/Menu/VBoxButtons"]
-texture_filter = 1
-layout_mode = 2
-texture_normal = ExtResource("2_p8k7v")
-texture_hover = ExtResource("3_luadt")
-stretch_mode = 3
-
-[node name="Exit" type="Button" parent="UI/Menu/VBoxButtons"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Exit"
-
-[node name="Settings" type="Button" parent="UI/Menu/VBoxButtons"]
-visible = false
-texture_filter = 1
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-icon = ExtResource("2_p8k7v")
-flat = true
-
-[node name="FPS" type="Label" parent="UI"]
-layout_mode = 1
-offset_right = 40.0
-offset_bottom = 20.0
-
 [node name="UseIndicator" type="Control" parent="UI"]
 visible = false
 layout_mode = 1
@@ -185,5 +127,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 40
 text = "press \"f\" for use"
-
-[connection signal="pressed" from="UI/Menu/VBoxButtons/Play" to="UI/Menu" method="_on_play_pressed"]
