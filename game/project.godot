@@ -23,6 +23,15 @@ debug_output="*res://user_interface/debugger/debugger.tscn"
 HUD="*res://scenes/gui/global_ui.tscn"
 global_var="*res://scenes/global_variables.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
+window/size/borderless=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+
 [gui]
 
 theme/custom_font="res://assets/fonts/16326.ttf"

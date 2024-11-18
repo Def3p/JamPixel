@@ -74,7 +74,7 @@ func _on_attack_area_area_entered(area: Area3D) -> void:
 				state = States.Attack_
 func attack():
 	if attack_collider.is_colliding() and attack_collider.get_collider() is HitboxComponent:
-		attack_collider.get_collider().get_parent()._Health_Component.damage(40.0)
+		attack_collider.get_collider().get_parent()._Health_Component.damage(2)
 		attack_collider.get_collider().get_parent().velocity = attack_collider.get_collider().get_parent().parkour_dir * -100
 		attack_collider.get_collider().get_parent().velocity.y += 10
 		

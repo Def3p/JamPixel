@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var _Health_Component : HealthComponent
 
 @export var def_speed : float
+@export var kayot_timer : Timer
 
 var speed = 5.0
 var JUMP_VELOCITY = 8
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		if !wall_run:
-			velocity += get_gravity() * delta * 2.5
+			velocity += get_gravity() * delta * 3
 
 	if Input.is_action_pressed("run") and !Input.is_action_pressed("go_back"):
 		speed = 10.0
@@ -35,7 +36,15 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
+	if is_on_floor() and !want_jump:
+		want_jump = true
+	elif want_jump and kayot_timer.is_stopped():
+		kayot_timer.start(0.1)
 		
-	if Input.is_action_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if want_jump:
+		if Input.is_action_pressed("ui_accept"):
+			velocity.y = JUMP_VELOCITY
 	move_and_slide()
+
+func _on_kayot_jump_timeout() -> void:
+	want_jump = false

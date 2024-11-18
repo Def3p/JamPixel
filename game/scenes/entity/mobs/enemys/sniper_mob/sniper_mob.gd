@@ -89,7 +89,7 @@ func add_bullet():
 	add_child(bullet)
 	var dir = Vector3(0,0,-1,).rotated(Vector3.UP, global_rotation.y)
 	bullet.speed = 15
-	bullet._damage = 60
+	bullet._damage = 2
 	bullet.delate_time = 2
 	bullet.forwared_direction = dir
 	bullet.global_position = spawn_bullet_pos.global_position

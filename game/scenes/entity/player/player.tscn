@@ -74,11 +74,12 @@ size = Vector3(1.1095, 1.97218, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eb13h"]
 radius = 0.606834
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component", "kayot_timer")]
 collision_mask = 7
 floor_max_angle = 1.43117
 script = ExtResource("1_ih8mb")
 _Health_Component = NodePath("Componetns/Health_Component")
+kayot_timer = NodePath("Kayot_Jump")
 
 [node name="Meshes" type="Node3D" parent="."]
 
@@ -101,7 +102,7 @@ _MovementComponent = NodePath("../..")
 
 [node name="Health_Component" type="Node" parent="Componetns"]
 script = ExtResource("5_jdoi6")
-max_health = 100.0
+max_health = 5.0
 
 [node name="Timer" type="Timer" parent="Componetns/Health_Component"]
 wait_time = 0.05
@@ -140,6 +141,167 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="bars" type="Control" parent="2D"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HP_bar" type="Control" parent="2D/bars"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="greys" type="Control" parent="2D/bars/HP_bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 260.0
+offset_right = 60.0
+offset_bottom = 300.0
+grow_vertical = 2
+
+[node name="grey" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey2" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 69.0
+offset_top = -30.0
+offset_right = 129.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey3" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = -30.0
+offset_right = 198.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey4" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 207.0
+offset_top = -30.0
+offset_right = 267.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="grey5" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 275.0
+offset_top = -30.0
+offset_right = 335.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="greens" type="Control" parent="2D/bars/HP_bar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 260.0
+offset_right = 60.0
+offset_bottom = 300.0
+grow_vertical = 2
+
+[node name="green" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+
+[node name="green2" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 69.0
+offset_top = -30.0
+offset_right = 129.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+
+[node name="green3" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = -30.0
+offset_right = 198.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+
+[node name="green4" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 207.0
+offset_top = -30.0
+offset_right = 267.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(9.52989e-06, 0.780933, 0.195366, 1)
+
+[node name="green5" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 275.0
+offset_top = -30.0
+offset_right = 335.0
+offset_bottom = 30.0
+grow_vertical = 2
+color = Color(9.52989e-06, 0.780933, 0.195366, 1)
 
 [node name="pimka" type="Label" parent="2D"]
 light_mask = 0
@@ -266,8 +428,12 @@ script = ExtResource("6_lise4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.984104, 0)
 shape = SubResource("CapsuleShape3D_eb13h")
 
+[node name="Kayot_Jump" type="Timer" parent="."]
+wait_time = 0.2
+
 [connection signal="timeout" from="Componetns/Health_Component/Timer" to="Componetns/Health_Component" method="_on_timer_timeout"]
 [connection signal="area_entered" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_entered"]
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_exited"]
+[connection signal="timeout" from="Kayot_Jump" to="." method="_on_kayot_jump_timeout"]
 
 [editable path="CameraNode/Camera3D/WeaponManager"]
