@@ -298,7 +298,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3164)
 
 [node name="trauma_causer" parent="." instance=ExtResource("4_1m00i")]
-trauma_amount = 0.35
+trauma_amount = 0.28
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trauma_causer"]
 shape = SubResource("SphereShape3D_5shxf")

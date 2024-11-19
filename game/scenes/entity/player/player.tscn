@@ -135,9 +135,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("7_umfex")
-max_x = 7.0
-max_y = 4.0
-max_z = 4.0
+max_x = 4.0
+max_y = 1.0
+max_z = 1.0
 noise = SubResource("6")
 noise_speed = 20.0
 
@@ -160,7 +160,6 @@ grow_vertical = 2
 [node name="WeaponManager" parent="CameraNode/shakeable_camera/Camera3D" instance=ExtResource("7_6kblb")]
 
 [node name="GunTest" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList" index="0"]
-shoot_cd = 0.1
 damage = 5.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
