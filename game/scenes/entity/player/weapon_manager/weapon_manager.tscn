@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://ck4co6nljvs6"]
+[gd_scene load_steps=25 format=4 uid="uid://ck4co6nljvs6"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/weapon_manager.gd" id="1_tqeiy"]
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/gun_resource.gd" id="2_ofhir"]
 [ext_resource type="PackedScene" uid="uid://db32tgd8wi0rl" path="res://scenes/rigid_weapons/gun_test.tscn" id="3_lour0"]
+[ext_resource type="PackedScene" uid="uid://cevan47ivl8c7" path="res://components/camera/trauma_causer.tscn" id="4_1m00i"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_hu5l7"]
 size = Vector3(0.175, 0.28, 1.04)
@@ -224,6 +225,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_78orp")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_5shxf"]
+radius = 2.055
+
 [node name="WeaponManager" type="Node3D" node_paths=PackedStringArray("start_weapon")]
 script = ExtResource("1_tqeiy")
 start_weapon = NodePath("WeaponsList/GunTest")
@@ -292,3 +296,9 @@ skeleton = NodePath("")
 
 [node name="CastMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.3164)
+
+[node name="trauma_causer" parent="." instance=ExtResource("4_1m00i")]
+trauma_amount = 0.35
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trauma_causer"]
+shape = SubResource("SphereShape3D_5shxf")

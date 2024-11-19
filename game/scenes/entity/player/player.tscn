@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=27 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
 [ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/entity/player/components/bars_component.gd" id="6_ig83q"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="6_lise4"]
 [ext_resource type="PackedScene" uid="uid://ck4co6nljvs6" path="res://scenes/entity/player/weapon_manager/weapon_manager.tscn" id="7_6kblb"]
+[ext_resource type="Script" path="res://components/camera/shakeable_camera.gd" id="7_umfex"]
 [ext_resource type="Texture2D" uid="uid://8o0hdem0tsc2" path="res://assets/art/bars/HP/Stamina_-_0.png" id="9_or6lt"]
 [ext_resource type="Texture2D" uid="uid://bryjxb8h5qtfg" path="res://assets/art/bars/HP/Stamina_-_1 (1).png" id="10_32y7y"]
 [ext_resource type="Texture2D" uid="uid://c04dttknt3ani" path="res://assets/art/bars/stamine/HP_-_0.png" id="11_vhq1y"]
@@ -20,6 +21,11 @@ albedo_texture = ExtResource("2_3sjsy")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_c1l25"]
 material = SubResource("StandardMaterial3D_adggw")
+
+[sub_resource type="FastNoiseLite" id="6"]
+
+[sub_resource type="SphereShape3D" id="5"]
+radius = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vcdso"]
 shader = ExtResource("6_0v7b8")
@@ -102,7 +108,7 @@ skeleton = NodePath("../..")
 script = ExtResource("3_006l0")
 player = NodePath("../..")
 camera_node = NodePath("../../CameraNode")
-camera = NodePath("../../CameraNode/Camera3D")
+camera = NodePath("../../CameraNode/shakeable_camera/Camera3D")
 
 [node name="Parkour_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("_MovementComponent", "dash_timer")]
 script = ExtResource("4_pvs7c")
@@ -125,11 +131,24 @@ Move_Ment = NodePath("../..")
 [node name="CameraNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraNode"]
+[node name="shakeable_camera" type="Area3D" parent="CameraNode"]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("7_umfex")
+max_x = 7.0
+max_y = 4.0
+max_z = 4.0
+noise = SubResource("6")
+noise_speed = 20.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="CameraNode/Camera3D"]
+[node name="CollisionShape" type="CollisionShape3D" parent="CameraNode/shakeable_camera"]
+shape = SubResource("5")
 
-[node name="ColorRect" type="ColorRect" parent="CameraNode/Camera3D/CanvasLayer"]
+[node name="Camera3D" type="Camera3D" parent="CameraNode/shakeable_camera"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CameraNode/shakeable_camera/Camera3D"]
+
+[node name="ColorRect" type="ColorRect" parent="CameraNode/shakeable_camera/Camera3D/CanvasLayer"]
 light_mask = 0
 material = SubResource("ShaderMaterial_vcdso")
 anchors_preset = 15
@@ -138,9 +157,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WeaponManager" parent="CameraNode/Camera3D" instance=ExtResource("7_6kblb")]
+[node name="WeaponManager" parent="CameraNode/shakeable_camera/Camera3D" instance=ExtResource("7_6kblb")]
 
-[node name="GunTest" parent="CameraNode/Camera3D/WeaponManager/WeaponsList" index="0"]
+[node name="GunTest" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList" index="0"]
 shoot_cd = 0.1
 damage = 5.0
 
@@ -685,4 +704,4 @@ wait_time = 0.1
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_exited"]
 [connection signal="timeout" from="Kayot_Jump" to="." method="_on_kayot_jump_timeout"]
 
-[editable path="CameraNode/Camera3D/WeaponManager"]
+[editable path="CameraNode/shakeable_camera/Camera3D/WeaponManager"]

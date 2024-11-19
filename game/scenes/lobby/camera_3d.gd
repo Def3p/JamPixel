@@ -14,7 +14,7 @@ var tab_rotation_x: float = -2.0
 @onready var lobby: Node = $"../../.."
 
 func _ready() -> void:
-	global_ui.conversion.animation_finished.connect(animation_finished_conv)
+	HUD.conversion.animation_finished.connect(animation_finished_conv)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event):
@@ -37,11 +37,11 @@ func _physics_process(delta: float) -> void:
 	camera.fov = lerp(camera.fov, 22.0, 2.5 * delta)
 	if rotation.y - tab_rotation_y > 1 or rotation.y - tab_rotation_y < 3:
 		if head.rotation.x - tab_rotation_x > 3 or head.rotation.x - tab_rotation_x < 3:
-			if camera.fov - 22.0 < 3: global_ui.conversion.play("black")
+			if camera.fov - 22.0 < 3: HUD.conversion.play("black")
 
 
 func animation_finished_conv(anim_name: StringName) -> void:
 	if anim_name == "black": 
 		is_tab = false
-		global_ui.conversion.play("white")
+		HUD.conversion.play("white")
 		get_tree().change_scene_to_file("res://scenes/levels/test/test_level.tscn")

@@ -20,6 +20,7 @@ var damage
 @onready var weapons: Node3D = $WeaponsList
 @onready var shoot_ray: RayCast3D = $ShootRaycast
 @onready var interaction_ray: RayCast3D = $InteractionRaycast
+@onready var trauma_causer: Area3D = $trauma_causer
 
 func _ready() -> void:
 	for child in weapons.get_children(): if child is Gun: 
@@ -122,23 +123,14 @@ func state_machine():
 func shoot():
 	if want_shoot:
 		want_shoot = false
+		trauma_causer.cause_trauma()
 		var get_gun = available_weapons[current_weapon]
 		get_gun.animator.play("shoot")
 		if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
 		if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
 			shoot_ray.get_collider().get_parent().damage(get_gun.damage)
 
-		#var cast_point
-		#var shoot_path = load_shoot_path.instantiate()
-		#var scene = get_tree().root
-		#scene.add_child(shoot_path)
-		#if shoot_ray.is_colliding():
-			#cast_point = to_local(shoot_ray.get_collision_point())
-			#shoot_path.mesh.height = cast_point.y
-			#shoot_path.position.y = cast_point.y/2
-
-		await get_tree().create_timer(get_gun.shoot_cd, false).timeout
-		want_shoot = true
 
 func animation_finished(_anim):
 	state = states.IDLE
+	want_shoot = true

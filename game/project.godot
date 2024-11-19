@@ -117,6 +117,7 @@ cast_gun={
 3d_physics/layer_4="phys"
 3d_physics/layer_5="usable object"
 3d_physics/layer_6="parkour element"
+3d_physics/layer_7="trauma"
 
 [rendering]
 
