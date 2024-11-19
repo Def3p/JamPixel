@@ -5,7 +5,6 @@ extends Node
 @export var max_health : float
 @onready var died_screen = $"../../2D/died_screen"
 @onready var died_anim = $"../../2D/AnimationPlayer"
-@onready var health_bars = [%green, %green2, %green3, %green4, %green5]
 var died_screen_scene = "res://scenes/gui/died_screen/died_screen.tscn"
 var health
 
@@ -21,15 +20,7 @@ func check_hp():
 		died_anim.play("died_anim")
 		await died_anim.animation_finished
 		get_tree().change_scene_to_file.bind(died_screen_scene).call_deferred()
-
-func update_health_bars() -> void:
-	for i in range(health_bars.size()):
-		if i < health:
-			health_bars[i].show()
-		else:
-			health_bars[i].hide()
 		
 		
 func _process(delta: float) -> void:
-	update_health_bars()
 	check_hp()

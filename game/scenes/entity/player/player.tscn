@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=20 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
 [ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scenes/entity/player/components/parkpour_component.gd" id="4_pvs7c"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/health_component.gd" id="5_jdoi6"]
 [ext_resource type="Shader" path="res://assets/shaders/pixelization/sa.gdshader" id="6_0v7b8"]
+[ext_resource type="Script" path="res://scenes/entity/player/components/bars_component.gd" id="6_ig83q"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="6_lise4"]
 [ext_resource type="PackedScene" uid="uid://ck4co6nljvs6" path="res://scenes/entity/player/weapon_manager/weapon_manager.tscn" id="7_6kblb"]
 
@@ -18,7 +19,7 @@ material = SubResource("StandardMaterial3D_adggw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vcdso"]
 shader = ExtResource("6_0v7b8")
-shader_parameter/quantize_size = 0.0
+shader_parameter/quantize_size = 1.0
 shader_parameter/handle_scale = null
 shader_parameter/handle_subpixels = true
 shader_parameter/dither_enabled = false
@@ -74,13 +75,14 @@ size = Vector3(1.1095, 1.97218, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eb13h"]
 radius = 0.606834
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component", "kayot_timer", "stamine_timer")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component", "kayot_timer", "stamine_timer", "stamine_reload")]
 collision_mask = 7
 floor_max_angle = 1.43117
 script = ExtResource("1_ih8mb")
 _Health_Component = NodePath("Componetns/Health_Component")
 kayot_timer = NodePath("Kayot_Jump")
 stamine_timer = NodePath("Stamina")
+stamine_reload = NodePath("Stamine_reload")
 
 [node name="Meshes" type="Node3D" parent="."]
 
@@ -108,6 +110,11 @@ max_health = 5.0
 [node name="Timer" type="Timer" parent="Componetns/Health_Component"]
 wait_time = 0.05
 autostart = true
+
+[node name="Bars_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("Health_Component", "Move_Ment")]
+script = ExtResource("6_ig83q")
+Health_Component = NodePath("../Health_Component")
+Move_Ment = NodePath("../..")
 
 [node name="CameraNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
@@ -422,6 +429,7 @@ offset_bottom = 380.0
 grow_vertical = 2
 
 [node name="blue" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -433,6 +441,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue2" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -445,6 +454,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue3" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -457,6 +467,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue4" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -469,6 +480,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue5" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -481,6 +493,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue6" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -493,6 +506,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue7" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -505,6 +519,7 @@ grow_vertical = 2
 color = Color(0, 0.356863, 0.666667, 1)
 
 [node name="blue8" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -653,13 +668,14 @@ shape = SubResource("CapsuleShape3D_eb13h")
 wait_time = 0.2
 
 [node name="Stamina" type="Timer" parent="."]
-process_callback = 0
+wait_time = 0.2
+
+[node name="Stamine_reload" type="Timer" parent="."]
 wait_time = 0.1
 
 [connection signal="timeout" from="Componetns/Health_Component/Timer" to="Componetns/Health_Component" method="_on_timer_timeout"]
 [connection signal="area_entered" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_entered"]
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_exited"]
 [connection signal="timeout" from="Kayot_Jump" to="." method="_on_kayot_jump_timeout"]
-[connection signal="timeout" from="Stamina" to="." method="_on_stamina_timeout"]
 
 [editable path="CameraNode/Camera3D/WeaponManager"]

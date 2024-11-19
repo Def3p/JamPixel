@@ -7,11 +7,13 @@ extends CharacterBody3D
 @export var def_speed : float
 @export var kayot_timer : Timer
 @export var stamine_timer : Timer
+@export var stamine_reload : Timer
 
 var speed = 5.0
 var JUMP_VELOCITY = 8
-var stamine = 100
+var stamine = 80
 var going = false
+var runing = false
 
 var want_jump = false
 var wall_run = false
@@ -19,6 +21,7 @@ var wall_run = false
 var parkour_dir
 
 func _physics_process(delta: float) -> void:
+	$"2D/FPS2".text = str(stamine)
 	stamine_logic()
 	parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, global_rotation.y)
 	
@@ -28,9 +31,10 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("run") and !Input.is_action_pressed("go_back") and stamine > 0:
 		speed = 10.0
-		
+		runing = true
 	else:
 		speed = def_speed
+		runing = false
 		
 	var input_dir := Input.get_vector("go_left", "go_right", "go_forward", "go_back")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -55,27 +59,28 @@ func _physics_process(delta: float) -> void:
 func _on_kayot_jump_timeout() -> void:
 	want_jump = false
 
-
 func stamine_logic():
-	if stamine_timer.is_stopped() and going:
+	if stamine_timer.is_stopped() and going and runing:
 		if stamine > 0:
 			stamine_timer.start()
 			stamine -= 1
-			$"2D/FPS2".text = str(stamine)
 			if stamine == 0:
 				stamine = -20
 			await stamine_timer.timeout
 			stamine_timer.stop()
-			
-	if stamine < 0:
+	if stamine <= 0:
 		if stamine_timer.is_stopped():
 			stamine_timer.start()
-			stamine += 1
-			$"2D/FPS2".text = str(stamine)
 			if stamine == 0:
 				stamine = 10
 			await stamine_timer.timeout
 			stamine_timer.stop()
+	if stamine < 80 and !runing:
+		if stamine_reload.is_stopped():
+			stamine_reload.start()
+			stamine += 1
+			await stamine_reload.timeout
+			stamine_reload.stop()
 			
 			
 			
