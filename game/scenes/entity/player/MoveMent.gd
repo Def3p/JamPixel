@@ -80,6 +80,7 @@ func stamine_logic():
 			stamine += 1
 			await stamine_reload.timeout
 			stamine_reload.stop()
+			#020
 			
 			
 			
