@@ -3,6 +3,7 @@ class_name ParkourComponent
 extends Node
 
 @export var _MovementComponent : MoveMent
+@export var dash_timer : Timer
 
 @onready var wall_raycasts = [$"../../WallHitbox/left_raycast", $"../../WallHitbox/left_raycast2", $"../../WallHitbox/left_raycast3", $"../../WallHitbox/right_raycast", $"../../WallHitbox/right_raycast2", $"../../WallHitbox/right_raycast3"]
 @onready var directions = [$"../../WallHitbox/left", $"../../WallHitbox/right"]
@@ -22,6 +23,7 @@ func _on_wall_hitbox_area_exited(area: Area3D) -> void:
 		
 func _process(delta: float) -> void:
 	run_on_wall(delta)
+	#dash(delta)
 		
 func run_on_wall(delta):
 	if want_running_on_wall:
@@ -43,3 +45,14 @@ func run_on_wall(delta):
 						_MovementComponent.velocity.y = 13
 	else:
 		_MovementComponent.wall_run = false
+		
+#func dash(delta):
+	#if Input.is_action_just_pressed("go_right"):
+		#if dash_timer.is_stopped():
+			#dash_timer.start()
+			#if Input.is_action_just_pressed("go_right") and _MovementComponent.is_on_floor():
+				#var parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, directions[0].global_rotation.y)
+				#var forward_direction = parkour_dir.normalized()
+				#_MovementComponent.velocity = forward_direction * 200 * delta * 20
+			#await dash_timer.timeout
+			#dash_timer.stop()

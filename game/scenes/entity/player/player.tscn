@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=24 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
 [ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
@@ -10,6 +10,10 @@
 [ext_resource type="Script" path="res://scenes/entity/player/components/bars_component.gd" id="6_ig83q"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="6_lise4"]
 [ext_resource type="PackedScene" uid="uid://ck4co6nljvs6" path="res://scenes/entity/player/weapon_manager/weapon_manager.tscn" id="7_6kblb"]
+[ext_resource type="Texture2D" uid="uid://8o0hdem0tsc2" path="res://assets/art/bars/HP/Stamina_-_0.png" id="9_or6lt"]
+[ext_resource type="Texture2D" uid="uid://bryjxb8h5qtfg" path="res://assets/art/bars/HP/Stamina_-_1 (1).png" id="10_32y7y"]
+[ext_resource type="Texture2D" uid="uid://c04dttknt3ani" path="res://assets/art/bars/stamine/HP_-_0.png" id="11_vhq1y"]
+[ext_resource type="Texture2D" uid="uid://b57ikg1fhl22o" path="res://assets/art/bars/stamine/HP_-_1.png" id="12_4xrw8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adggw"]
 albedo_texture = ExtResource("2_3sjsy")
@@ -19,7 +23,7 @@ material = SubResource("StandardMaterial3D_adggw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vcdso"]
 shader = ExtResource("6_0v7b8")
-shader_parameter/quantize_size = 1.0
+shader_parameter/quantize_size = 4.0
 shader_parameter/handle_scale = null
 shader_parameter/handle_subpixels = true
 shader_parameter/dither_enabled = false
@@ -80,6 +84,7 @@ collision_mask = 7
 floor_max_angle = 1.43117
 script = ExtResource("1_ih8mb")
 _Health_Component = NodePath("Componetns/Health_Component")
+def_speed = 5.0
 kayot_timer = NodePath("Kayot_Jump")
 stamine_timer = NodePath("Stamina")
 stamine_reload = NodePath("Stamine_reload")
@@ -99,9 +104,10 @@ player = NodePath("../..")
 camera_node = NodePath("../../CameraNode")
 camera = NodePath("../../CameraNode/Camera3D")
 
-[node name="Parkour_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("_MovementComponent")]
+[node name="Parkour_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("_MovementComponent", "dash_timer")]
 script = ExtResource("4_pvs7c")
 _MovementComponent = NodePath("../..")
+dash_timer = NodePath("../../dash_timer")
 
 [node name="Health_Component" type="Node" parent="Componetns"]
 script = ExtResource("5_jdoi6")
@@ -177,7 +183,7 @@ offset_right = 60.0
 offset_bottom = 300.0
 grow_vertical = 2
 
-[node name="grey" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+[node name="grey" type="TextureRect" parent="2D/bars/HP_bar/greys"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -186,9 +192,9 @@ offset_top = -30.0
 offset_right = 60.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("9_or6lt")
 
-[node name="grey2" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+[node name="grey2" type="TextureRect" parent="2D/bars/HP_bar/greys"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -198,9 +204,9 @@ offset_top = -30.0
 offset_right = 129.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("9_or6lt")
 
-[node name="grey3" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+[node name="grey3" type="TextureRect" parent="2D/bars/HP_bar/greys"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -210,9 +216,9 @@ offset_top = -30.0
 offset_right = 198.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("9_or6lt")
 
-[node name="grey4" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+[node name="grey4" type="TextureRect" parent="2D/bars/HP_bar/greys"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -222,9 +228,9 @@ offset_top = -30.0
 offset_right = 267.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("9_or6lt")
 
-[node name="grey5" type="ColorRect" parent="2D/bars/HP_bar/greys"]
+[node name="grey5" type="TextureRect" parent="2D/bars/HP_bar/greys"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -234,7 +240,7 @@ offset_top = -30.0
 offset_right = 335.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("9_or6lt")
 
 [node name="greens" type="Control" parent="2D/bars/HP_bar"]
 layout_mode = 1
@@ -247,7 +253,7 @@ offset_right = 60.0
 offset_bottom = 300.0
 grow_vertical = 2
 
-[node name="green" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+[node name="green" type="TextureRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -257,9 +263,10 @@ offset_top = -30.0
 offset_right = 60.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0, 0.505882, 0.196078, 1)
+texture = ExtResource("10_32y7y")
+flip_h = true
 
-[node name="green2" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+[node name="green2" type="TextureRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -270,9 +277,10 @@ offset_top = -30.0
 offset_right = 129.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0, 0.505882, 0.196078, 1)
+texture = ExtResource("10_32y7y")
+flip_h = true
 
-[node name="green3" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+[node name="green3" type="TextureRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -283,9 +291,11 @@ offset_top = -30.0
 offset_right = 198.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0, 0.505882, 0.196078, 1)
+texture = ExtResource("10_32y7y")
+flip_h = true
+flip_v = true
 
-[node name="green4" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+[node name="green4" type="TextureRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -296,9 +306,9 @@ offset_top = -30.0
 offset_right = 267.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0, 0.505882, 0.196078, 1)
+texture = ExtResource("10_32y7y")
 
-[node name="green5" type="ColorRect" parent="2D/bars/HP_bar/greens"]
+[node name="green5" type="TextureRect" parent="2D/bars/HP_bar/greens"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -309,7 +319,8 @@ offset_top = -30.0
 offset_right = 335.0
 offset_bottom = 30.0
 grow_vertical = 2
-color = Color(0, 0.505882, 0.196078, 1)
+texture = ExtResource("10_32y7y")
+flip_h = true
 
 [node name="greys2" type="Control" parent="2D/bars/HP_bar"]
 layout_mode = 1
@@ -322,7 +333,7 @@ offset_right = 60.0
 offset_bottom = 380.0
 grow_vertical = 2
 
-[node name="grey" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -331,9 +342,9 @@ offset_top = -30.0
 offset_right = 40.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey2" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey2" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -343,9 +354,9 @@ offset_top = -30.0
 offset_right = 85.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey3" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey3" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -355,9 +366,9 @@ offset_top = -30.0
 offset_right = 130.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey4" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey4" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -367,9 +378,9 @@ offset_top = -30.0
 offset_right = 175.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey5" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey5" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -379,9 +390,9 @@ offset_top = -30.0
 offset_right = 220.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey6" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey6" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -391,9 +402,9 @@ offset_top = -30.0
 offset_right = 265.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey7" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey7" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -403,9 +414,9 @@ offset_top = -30.0
 offset_right = 310.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
-[node name="grey8" type="ColorRect" parent="2D/bars/HP_bar/greys2"]
+[node name="grey8" type="TextureRect" parent="2D/bars/HP_bar/greys2"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -415,7 +426,7 @@ offset_top = -30.0
 offset_right = 355.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0.233925, 0.233925, 0.233925, 1)
+texture = ExtResource("11_vhq1y")
 
 [node name="blue" type="Control" parent="2D/bars/HP_bar"]
 layout_mode = 1
@@ -428,7 +439,7 @@ offset_right = 60.0
 offset_bottom = 380.0
 grow_vertical = 2
 
-[node name="blue" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -438,9 +449,9 @@ offset_top = -30.0
 offset_right = 40.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue2" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue2" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -451,9 +462,9 @@ offset_top = -30.0
 offset_right = 85.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue3" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue3" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -464,9 +475,9 @@ offset_top = -30.0
 offset_right = 130.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue4" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue4" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -477,9 +488,9 @@ offset_top = -30.0
 offset_right = 175.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue5" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue5" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -490,9 +501,9 @@ offset_top = -30.0
 offset_right = 220.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue6" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue6" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -503,9 +514,9 @@ offset_top = -30.0
 offset_right = 265.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue7" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue7" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -516,9 +527,9 @@ offset_top = -30.0
 offset_right = 310.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="blue8" type="ColorRect" parent="2D/bars/HP_bar/blue"]
+[node name="blue8" type="TextureRect" parent="2D/bars/HP_bar/blue"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 4
@@ -529,9 +540,16 @@ offset_top = -30.0
 offset_right = 355.0
 offset_bottom = 10.0
 grow_vertical = 2
-color = Color(0, 0.356863, 0.666667, 1)
+texture = ExtResource("12_4xrw8")
 
-[node name="pimka" type="Label" parent="2D"]
+[node name="FPS" type="Label" parent="2D"]
+light_mask = 0
+visibility_layer = 2
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label" type="Label" parent="2D"]
 light_mask = 0
 visibility_layer = 2
 layout_mode = 1
@@ -541,29 +559,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
+offset_top = -10.0
 offset_right = 20.0
-offset_bottom = 11.5
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "."
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="FPS" type="Label" parent="2D"]
-light_mask = 0
-visibility_layer = 2
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="FPS2" type="Label" parent="2D"]
-light_mask = 0
-visibility_layer = 2
-layout_mode = 0
-offset_left = 96.0
-offset_right = 136.0
-offset_bottom = 23.0
+autowrap_mode = 2
 
 [node name="died_screen" type="ColorRect" parent="2D"]
 visible = false
@@ -671,6 +675,9 @@ wait_time = 0.2
 wait_time = 0.2
 
 [node name="Stamine_reload" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="dash_timer" type="Timer" parent="."]
 wait_time = 0.1
 
 [connection signal="timeout" from="Componetns/Health_Component/Timer" to="Componetns/Health_Component" method="_on_timer_timeout"]

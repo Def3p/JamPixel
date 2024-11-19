@@ -13,7 +13,6 @@ func _ready() -> void:
 
 func damage(_damage : float) -> void:
 	health -= _damage
-	print(health)
 func check_hp():
 	if health <= 0:
 		died_screen.show()

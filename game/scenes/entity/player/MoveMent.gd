@@ -21,7 +21,6 @@ var wall_run = false
 var parkour_dir
 
 func _physics_process(delta: float) -> void:
-	$"2D/FPS2".text = str(stamine)
 	stamine_logic()
 	parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, global_rotation.y)
 	

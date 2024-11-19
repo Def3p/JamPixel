@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f12kox7lu8s"
-path.s3tc="res://.godot/imported/Table_Test_wood_cabinet_worn_long_rough_16k.png-3d188a46d6d3e175a732ede44938568f.s3tc.ctex"
+uid="uid://bkkr7hsdl1xyo"
+path.s3tc="res://.godot/imported/Dirt.png-a325d9c3943800aa0fd1824c5b6c3d56.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "637b7c9094db704b80234e575bb7229f"
-}
 
 [deps]
 
-source_file="res://assets/models/Table_Test_wood_cabinet_worn_long_rough_16k.png"
-dest_files=["res://.godot/imported/Table_Test_wood_cabinet_worn_long_rough_16k.png-3d188a46d6d3e175a732ede44938568f.s3tc.ctex"]
+source_file="res://assets/art/grass_texture/Dirt.png"
+dest_files=["res://.godot/imported/Dirt.png-a325d9c3943800aa0fd1824c5b6c3d56.s3tc.ctex"]
 
 [params]
 
