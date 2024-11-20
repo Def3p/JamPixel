@@ -122,7 +122,6 @@ func state_machine():
 func shoot():
 	if want_shoot:
 		want_shoot = false
-		trauma_causer.cause_trauma()
 		var get_gun = available_weapons[current_weapon]
 		get_gun.animator.play("shoot")
 		if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
