@@ -115,9 +115,10 @@ script = ExtResource("4_pvs7c")
 _MovementComponent = NodePath("../..")
 dash_timer = NodePath("../../dash_timer")
 
-[node name="Health_Component" type="Node" parent="Componetns"]
+[node name="Health_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("shakable_comp")]
 script = ExtResource("5_jdoi6")
 max_health = 5.0
+shakable_comp = NodePath("../../CameraNode/shakeable_camera")
 
 [node name="Timer" type="Timer" parent="Componetns/Health_Component"]
 wait_time = 0.05

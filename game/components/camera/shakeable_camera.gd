@@ -1,3 +1,5 @@
+class_name Shakable_Component
+
 extends Area3D
 
 @export var trauma_reduction_rate := 1.0
