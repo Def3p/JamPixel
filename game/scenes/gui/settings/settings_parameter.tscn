@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwackqfgkri0p"]
+
+[ext_resource type="Script" path="res://scenes/gui/settings/settings_parameter.gd" id="1_gygee"]
+
+[node name="SettingsParameter" type="HBoxContainer"]
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+script = ExtResource("1_gygee")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32

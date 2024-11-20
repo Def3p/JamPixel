@@ -1,8 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b512tyjmgxou4"]
+[gd_scene load_steps=11 format=3 uid="uid://b512tyjmgxou4"]
 
 [ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="1_dk1xw"]
+[ext_resource type="Texture2D" uid="uid://dcn1ysglvqp1f" path="res://assets/art/ui/SETTINGS.png" id="2_pe08p"]
 [ext_resource type="Script" path="res://user_interface/menu/view.gd" id="2_vpwlj"]
+[ext_resource type="Texture2D" uid="uid://boyqb8ljgtp4s" path="res://assets/art/ui/SETTINGS_FOCUSED.png" id="3_ltvli"]
 [ext_resource type="Texture2D" uid="uid://cw23up1fk4n7n" path="res://assets/art/sky_texture/8k_stars_milky_way.jpg" id="4_8lhoj"]
+[ext_resource type="Script" path="res://user_interface/menu/settings.gd" id="4_dv6ub"]
+[ext_resource type="PackedScene" uid="uid://bwackqfgkri0p" path="res://scenes/gui/settings/settings_parameter.tscn" id="4_vqr2x"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xsv4s"]
 panorama = ExtResource("4_8lhoj")
@@ -51,16 +55,161 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Play" type="Button" parent="Menu/Buttons/VBoxButtons"]
+[node name="Play" type="TextureButton" parent="Menu/Buttons/VBoxButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-theme_override_font_sizes/font_size = 65
-text = "play"
+texture_normal = ExtResource("2_pe08p")
+texture_focused = ExtResource("3_ltvli")
+stretch_mode = 5
 
-[node name="Settings" type="Button" parent="Menu/Buttons/VBoxButtons"]
+[node name="Settings" type="TextureButton" parent="Menu/Buttons/VBoxButtons"]
+unique_name_in_owner = true
 texture_filter = 1
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_pe08p")
+texture_focused = ExtResource("3_ltvli")
+stretch_mode = 5
+
+[node name="SettingsMenu" type="MarginContainer" parent="Menu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1277.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("4_dv6ub")
+
+[node name="Panel" type="Panel" parent="Menu/SettingsMenu"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/SettingsMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/SettingsMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 65
-text = "settings"
+text = "AUDIO"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+
+[node name="SettingsParameter" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_vqr2x")]
+layout_mode = 2
+setting_text = "общая громкость"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/SettingsParameter"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="MasterHSlider" type="HSlider" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/SettingsParameter/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -60.0
+max_value = 0.0
+
+[node name="SettingsParameter2" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_vqr2x")]
+layout_mode = 2
+setting_text = "громкость музыки"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/SettingsParameter2"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="MusicHSlider" type="HSlider" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/SettingsParameter2/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -60.0
+max_value = 0.0
+
+[node name="SettingsParameter3" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_vqr2x")]
+layout_mode = 2
+setting_text = "громкость эффектов"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/SettingsParameter3"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="EffectsHSlider" type="HSlider" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer/ScrollContainer/VBoxContainer/SettingsParameter3/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -60.0
+max_value = 0.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 65
+text = "Video
+"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2"]
+clip_contents = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 25
+
+[node name="SettingsParameter" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("4_vqr2x")]
+layout_mode = 2
+setting_text = "Разрешение"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/SettingsParameter"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="SizeOptionButton" type="OptionButton" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/SettingsParameter/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 32
+
+[node name="SettingsParameter2" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer" instance=ExtResource("4_vqr2x")]
+layout_mode = 2
+setting_text = "отключить пиксели"
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/SettingsMenu/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/VBoxContainer/SettingsParameter2"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
 
 [node name="ExitConfirm" type="MarginContainer" parent="Menu"]
 unique_name_in_owner = true
@@ -118,12 +267,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 25
 text = "Да"
 
-[node name="Settings" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="View" type="Node3D" parent="."]
 script = ExtResource("2_vpwlj")
 
@@ -137,5 +280,3 @@ visible = false
 [node name="Camera3D" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6974)
 current = true
-
-[connection signal="pressed" from="Menu/Buttons/VBoxButtons/Play" to="Menu" method="_on_play_pressed"]
