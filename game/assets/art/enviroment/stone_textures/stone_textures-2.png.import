@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ylcd76v8o5fv"
-path.s3tc="res://.godot/imported/grid_white_512x512.png-4ff3634dc646505e68636601225aa06d.s3tc.ctex"
+uid="uid://c7ploe5we81ra"
+path.s3tc="res://.godot/imported/stone_textures-2.png-4746d4dfcb028e3118dec48f183c4174.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_white_512x512.png"
-dest_files=["res://.godot/imported/grid_white_512x512.png-4ff3634dc646505e68636601225aa06d.s3tc.ctex"]
+source_file="res://assets/art/enviroment/stone_textures/stone_textures-2.png"
+dest_files=["res://.godot/imported/stone_textures-2.png-4746d4dfcb028e3118dec48f183c4174.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,137 @@
+[gd_scene load_steps=16 format=3 uid="uid://cmlyrmfg1iwxo"]
+
+[ext_resource type="Script" path="res://scenes/objects/elevator/elevator.gd" id="1_6vi0h"]
+[ext_resource type="Texture2D" uid="uid://bk1dtxwmvh65u" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_black_512x512.png" id="1_j3g3h"]
+[ext_resource type="Texture2D" uid="uid://b8i05aw3uq5ei" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_orange_512x512.png" id="2_mst8q"]
+[ext_resource type="Texture2D" uid="uid://ylcd76v8o5fv" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_white_512x512.png" id="3_an8n3"]
+[ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="4_s8h2a"]
+[ext_resource type="Texture2D" uid="uid://dxaereaihx0jp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_blue_512x512.png" id="5_cam60"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xonb2"]
+albedo_texture = ExtResource("1_j3g3h")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1011o"]
+albedo_texture = ExtResource("1_j3g3h")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8kjr"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(0.529412, 0.529412, 0, 1)
+emission_energy_multiplier = 16.0
+rim_enabled = true
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_do2bm"]
+albedo_texture = ExtResource("2_mst8q")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yik5t"]
+albedo_texture = ExtResource("3_an8n3")
+uv1_triplanar = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pcnf5"]
+load_path = "res://.godot/imported/grid_white_512x512.png-4ff3634dc646505e68636601225aa06d.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmder"]
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = SubResource("CompressedTexture2D_pcnf5")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocnsj"]
+albedo_texture = ExtResource("5_cam60")
+rim_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p73mu"]
+size = Vector3(0.239471, 0.241653, 0.473145)
+
+[node name="elevator" type="StaticBody3D"]
+script = ExtResource("1_6vi0h")
+elevator_type = null
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.794067, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(1, 1.58911, 1)
+material = SubResource("StandardMaterial3D_xonb2")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0065918, 0.01474, 0.0259552)
+operation = 2
+size = Vector3(0.916504, 1.50311, 0.967804)
+material = SubResource("StandardMaterial3D_1011o")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00657558, 1.48982, -0.0156605)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(0.0595093, 0.183472, 0.0667114)
+material = SubResource("StandardMaterial3D_xonb2")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00133419, 1.34072, -0.0226871)
+use_collision = true
+collision_layer = 2
+collision_mask = 0
+size = Vector3(0.117905, 0.183472, 0.108047)
+material = SubResource("StandardMaterial3D_j8kjr")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CSGBox3D7"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.104684, 0)
+light_color = Color(1, 1, 0.854902, 1)
+shadow_enabled = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.298307, 1.03063, -0.394957)
+size = Vector3(0.253784, 0.319214, 0.112793)
+material = SubResource("StandardMaterial3D_do2bm")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0115783, 1.03063, -0.394957)
+size = Vector3(0.253784, 0.319214, 0.112793)
+material = SubResource("StandardMaterial3D_do2bm")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29468, 0.712382, -0.421631)
+size = Vector3(0.285889, 0.396484, 0.156738)
+material = SubResource("StandardMaterial3D_yik5t")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282977, 0.712298, -0.292158)
+size = Vector3(0.128723, 0.133301, 0.156738)
+material = SubResource("StandardMaterial3D_qmder")
+
+[node name="bata" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.278968, 1.01633, -0.30175)
+visible = false
+size = Vector3(0.0780945, 0.156219, 0.112793)
+material = SubResource("StandardMaterial3D_ocnsj")
+
+[node name="bata2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0100743, 1.01633, -0.30175)
+visible = false
+size = Vector3(0.0780945, 0.156219, 0.112793)
+material = SubResource("StandardMaterial3D_ocnsj")
+
+[node name="HitboxComponent" type="Area3D" parent="." node_paths=PackedStringArray("object")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539783, 0)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_s8h2a")
+object = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.285522, 0.17542, -0.263428)
+shape = SubResource("BoxShape3D_p73mu")
+
+[node name="door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.520306, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27301, 0.492218)
+size = Vector3(1, 1.54602, 0.015564)
+material = SubResource("StandardMaterial3D_xonb2")

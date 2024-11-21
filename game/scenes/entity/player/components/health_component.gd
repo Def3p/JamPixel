@@ -6,6 +6,7 @@ extends Node
 @onready var died_screen = $"../../2D/died_screen"
 @onready var died_anim = $"../../2D/AnimationPlayer"
 @export var shakable_comp : Shakable_Component
+@export var damage_anim : AnimationPlayer
 var died_screen_scene = "res://scenes/gui/died_screen/died_screen.tscn"
 var health
 
@@ -14,7 +15,8 @@ func _ready() -> void:
 
 func damage(_damage : float) -> void:
 	health -= _damage
-	shakable_comp.add_trauma(300)
+	shakable_comp.add_trauma(3.0)
+	damage_anim.play("damage_anim")
 func check_hp():
 	if health <= 0:
 		died_screen.show()
