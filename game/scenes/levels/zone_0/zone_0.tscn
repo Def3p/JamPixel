@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://byx4cf6jxgyjc"]
+[gd_scene load_steps=13 format=3 uid="uid://byx4cf6jxgyjc"]
 
 [ext_resource type="Texture2D" uid="uid://dhsqd43hf6d45" path="res://addons/godot-prototype-texture/PNG/grid_1024x1024/grid_orange_1024x1024.png" id="2_d18l1"]
 [ext_resource type="Texture2D" uid="uid://bi63fahmqnv2n" path="res://addons/godot-prototype-texture/PNG/grid_1024x1024/grid_red_1024x1024.png" id="3_2gkaf"]
 [ext_resource type="PackedScene" uid="uid://vdub5sg82u7t" path="res://components/camera/shakeable_camera.tscn" id="4_evxkh"]
 [ext_resource type="Texture2D" uid="uid://dtep8s7c2ocro" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_orange_512x512.png" id="4_gxnnb"]
+[ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="5_trnxv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7hwrd"]
 sky_top_color = Color(0.384314, 0.694118, 0.843137, 1)
@@ -95,3 +96,6 @@ material = SubResource("StandardMaterial3D_k8hou")
 
 [node name="shakeable_camera" parent="." instance=ExtResource("4_evxkh")]
 transform = Transform3D(-0.912277, 0, -0.409573, 0, 1, 0, 0.409573, 0, -0.912277, -5.55278, 2.64583, 7.04004)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("5_trnxv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.35286, 0.5, 0.113026)

@@ -39,7 +39,6 @@ func _process(_delta: float) -> void:
 	else: HUD.use_indicator.hide()
 	if Input.is_action_just_pressed("interaction"): interaction()
 	if Input.is_action_just_pressed("cast_gun"): cast_weapon()
-	if Input.is_action_just_pressed("shoot"): shoot()
 	select_weapon()
 	weapon_initialization()
 	state_machine()
