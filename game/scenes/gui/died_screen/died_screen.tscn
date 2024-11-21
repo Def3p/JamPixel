@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://55rkl5i3pvbj"]
+[gd_scene load_steps=14 format=3 uid="uid://55rkl5i3pvbj"]
 
 [ext_resource type="Script" path="res://scenes/gui/died_screen/died_screen.gd" id="1_1k8qg"]
 [ext_resource type="Shader" path="res://scenes/gui/died_screen/died_screen.gdshader" id="1_4ckfa"]
@@ -47,6 +47,43 @@ turbulence_enabled = true
 turbulence_noise_strength = 20.0
 turbulence_noise_speed = Vector3(3.355, 11.255, 15.59)
 turbulence_noise_speed_random = 4.0
+
+[sub_resource type="Animation" id="Animation_8ga1p"]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rryoy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1tlq4"]
+_data = {
+"RESET": SubResource("Animation_rryoy"),
+"start": SubResource("Animation_8ga1p")
+}
 
 [node name="died_screen" type="CanvasLayer"]
 script = ExtResource("1_1k8qg")
@@ -166,5 +203,19 @@ autoplay = true
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
+libraries = {
+"": SubResource("AnimationLibrary_1tlq4")
+}
+autoplay = "start"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

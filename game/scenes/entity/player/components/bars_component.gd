@@ -21,7 +21,6 @@ func update_stamina_bars():
 	for i in range(stamine_bars.size()):
 		if Move_Ment.stamine % 10 == 0:
 			var a = Move_Ment.stamine / 10
-			print(a)
 			if i < a:
 				stamine_bars[i].show()
 			else:
