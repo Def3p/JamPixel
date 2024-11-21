@@ -29,7 +29,7 @@ func _ready() -> void:
 		weapons_list.append(child)
 		child.hide()
 	available_weapons.append(start_weapon)
-	add_weapon(2)
+	add_weapon("pistol")
 
 
 func _process(_delta: float) -> void:
@@ -62,9 +62,10 @@ func interaction():
 		interaction_ray.get_collider().get_parent().interaction(self)
 
 
-func add_weapon(id: int):
+func add_weapon(name: String):
 	if len(available_weapons) == max_weapons: return
-	available_weapons.append(weapons_list[id])
+	for i in weapons_list:
+		if i.weapon_name == name: available_weapons.append(i)
 
 
 func remove_weapon(id: int): 
@@ -82,6 +83,7 @@ func cast_weapon():
 	phys_gun.global_position = cast_marker.global_position
 	var vector = cast_marker.global_position - self.global_position
 	phys_gun.impulse(vector * 3)
+	phys_gun.weapon_name = get_gun.weapon_name
 	remove_weapon(current_weapon)
 	current_weapon += 1
 	if current_weapon > len(available_weapons) - 1: current_weapon = 0
