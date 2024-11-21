@@ -14,6 +14,9 @@ extends Node
 @onready var settings: TextureButton = %Settings
 
 
+func _enter_tree() -> void: HUD.hide()
+
+
 func _ready():
 	exit_confirm.hide()
 	settings_menu.hide()

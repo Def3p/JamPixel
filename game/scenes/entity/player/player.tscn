@@ -230,6 +230,9 @@ grow_vertical = 2
 [node name="MeshInstance3D" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList/Minigun" index="0"]
 transform = Transform3D(0.14985, 0.000271156, 0.00504781, -0.00346693, 0.0997389, 0.0530503, -0.0057453, -0.0531138, 0.0996453, 0.033, 0.187, 0.03)
 
+[node name="Cylinder_003" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList/Minigun" index="1"]
+transform = Transform3D(0.014854, -0.000592907, 0.00200162, 0, 0.0143823, 0.00426022, -0.00208759, -0.00421877, 0.0142423, 0.045, -0.733, 0.315)
+
 [node name="MeshInstance3D" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList/Pistol" index="0"]
 transform = Transform3D(-0.140611, 0, 0.0763453, 0, 0.16, 0, -0.0763453, 0, -0.140611, 0, 0.2, -1.065)
 

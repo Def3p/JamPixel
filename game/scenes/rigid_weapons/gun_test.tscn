@@ -1,13 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://db32tgd8wi0rl"]
+[gd_scene load_steps=9 format=3 uid="uid://db32tgd8wi0rl"]
 
 [ext_resource type="Script" path="res://scenes/rigid_weapons/phys_gun.gd" id="1_uxcaf"]
+[ext_resource type="PackedScene" uid="uid://bh8l0f4ia0b3q" path="res://assets/models/Bread.glb" id="2_cqh37"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="2_xiius"]
+[ext_resource type="Texture2D" uid="uid://bo6w4wpdk6dy8" path="res://assets/art/milo.jpg" id="3_2jxyn"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8swj3"]
 size = Vector3(0.225, 0.365, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npxkt"]
+albedo_texture = ExtResource("3_2jxyn")
+uv1_scale = Vector3(1.98, 1.98, 1.98)
+uv1_offset = Vector3(-0.67, 0.485, 1.455)
+uv1_triplanar = true
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_pbmfa"]
-size = Vector3(0.25, 0.38, 1)
+size = Vector3(0.505, 0.475, 0.94)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wlvea"]
 size = Vector3(0.545, 0.565, 1.575)
@@ -21,13 +29,20 @@ center_of_mass = Vector3(0, 0, 0.1)
 inertia = Vector3(0, 0, 1)
 script = ExtResource("1_uxcaf")
 
+[node name="Bread" parent="." instance=ExtResource("2_cqh37")]
+transform = Transform3D(-1.00536e-08, 0, 0.23, 0, 0.23, 0, -0.23, 0, -1.00536e-08, 0, 0, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_8swj3")
+surface_material_override/0 = SubResource("StandardMaterial3D_npxkt")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0323972, 0)
 shape = SubResource("BoxShape3D_pbmfa")
 
 [node name="HitboxComponent" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0274889, 0)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("2_xiius")
