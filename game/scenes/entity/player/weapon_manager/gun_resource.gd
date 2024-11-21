@@ -1,6 +1,7 @@
 class_name Gun
 extends Node3D
 
+@export var weapon_name: String
 @export var is_cast: bool
 
 @export_category("Ammo")
