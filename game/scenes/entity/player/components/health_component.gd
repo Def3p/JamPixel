@@ -25,5 +25,6 @@ func check_hp():
 		get_tree().change_scene_to_file.bind(died_screen_scene).call_deferred()
 		
 		
+		
 func _process(delta: float) -> void:
 	check_hp()

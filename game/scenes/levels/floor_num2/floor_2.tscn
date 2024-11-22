@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://de3dlkrsyhr3f"]
+[gd_scene load_steps=12 format=4 uid="uid://de3dlkrsyhr3f"]
 
 [ext_resource type="Texture2D" uid="uid://bk1dtxwmvh65u" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_black_512x512.png" id="1_hp2pe"]
 [ext_resource type="Script" path="res://scenes/levels/floor_num2/floor_2.gd" id="1_p5por"]
 [ext_resource type="PackedScene" uid="uid://cmlyrmfg1iwxo" path="res://scenes/objects/elevator/elevator.tscn" id="3_x6p2r"]
+[ext_resource type="PackedScene" uid="uid://b1fxu0360vatj" path="res://components/mob_spawn_manager/mob_spawn_manager.tscn" id="4_q3wn7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1cmgx"]
 
@@ -83,3 +84,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6628, 1.42372, -10.64)
 [node name="elevator" parent="." instance=ExtResource("3_x6p2r")]
 transform = Transform3D(2.84519, 0, 0, 0, 2.84519, 0, 0, 0, 2.84519, -28.8306, -5.98133e-07, -10.1986)
 elevator_type = "lower"
+
+[node name="mob_spawn_manager" parent="." instance=ExtResource("4_q3wn7")]

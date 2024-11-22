@@ -1,5 +1,6 @@
-[gd_scene load_steps=58 format=4 uid="uid://cnh7qqm7irv58"]
+[gd_scene load_steps=59 format=4 uid="uid://cnh7qqm7irv58"]
 
+[ext_resource type="Script" path="res://scenes/levels/test/test_level.gd" id="1_45l01"]
 [ext_resource type="Texture2D" uid="uid://cuci0pplrfwil" path="res://addons/godot-prototype-texture/PNG/checker_512x512/checker_black_512x512.png" id="1_kj382"]
 [ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="2_tc66b"]
 [ext_resource type="Texture2D" uid="uid://dxaereaihx0jp" path="res://addons/godot-prototype-texture/PNG/grid_512x512/grid_blue_512x512.png" id="3_kbs0d"]
@@ -510,9 +511,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pgui0")
 
 [node name="Node3D" type="Node3D"]
-
-[node name="CharacterBody3D" parent="." instance=ExtResource("2_tc66b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9804, 13.8871, 3.01763)
+script = ExtResource("1_45l01")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iknu5")
@@ -954,3 +953,6 @@ skeleton = NodePath("")
 transform = Transform3D(0.163655, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.1452)
 mesh = SubResource("ArrayMesh_rq1vt")
 skeleton = NodePath("")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("2_tc66b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.2383, 13.4653, 3.60946)

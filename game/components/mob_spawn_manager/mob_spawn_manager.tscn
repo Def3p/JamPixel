@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1fxu0360vatj"]
+
+[ext_resource type="Script" path="res://components/mob_spawn_manager/mob_spawn_manager.gd" id="1_cuqeb"]
+
+[node name="mob_spawn_manager" type="Node"]
+script = ExtResource("1_cuqeb")
