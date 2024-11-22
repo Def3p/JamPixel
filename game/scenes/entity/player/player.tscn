@@ -225,16 +225,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WeaponManager" parent="CameraNode/shakeable_camera/Camera3D" instance=ExtResource("7_6kblb")]
+[node name="WeaponManager" parent="CameraNode/shakeable_camera" instance=ExtResource("7_6kblb")]
 
-[node name="MeshInstance3D" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList/Minigun" index="0"]
-transform = Transform3D(0.14985, 0.000271156, 0.00504781, -0.00346693, 0.0997389, 0.0530503, -0.0057453, -0.0531138, 0.0996453, 0.033, 0.187, 0.03)
+[node name="MeshInstance3D" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Sword" index="0"]
+transform = Transform3D(0.0259075, -0.0130776, 0.00328995, -0.000127532, 0.0299707, 0.157166, -0.00218761, -0.156623, 0.0298, -0.0134009, -0.128072, -0.0955554)
 
-[node name="MeshInstance3D" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList/Pistol" index="0"]
-transform = Transform3D(-0.140611, 0, 0.0763453, 0, 0.16, 0, -0.0763453, 0, -0.140611, 0, 0.2, -1.065)
+[node name="Pistol" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="1"]
+amount_ammo = 0
 
-[node name="GunTest" parent="CameraNode/shakeable_camera/Camera3D/WeaponManager/WeaponsList" index="3"]
+[node name="Boozook" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="2"]
+transform = Transform3D(-0.00558052, -0.0111067, -0.0790285, 0, 0.0792214, -0.0111338, 0.0798051, -0.000776658, -0.00552621, -5.96046e-08, 0, 1.19209e-07)
+
+[node name="Cylinder_002" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Boozook/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.925)
+
+[node name="Cylinder_004" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Boozook/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.74846e-07, 0, 1.74846e-07, 1, 0, 0, 9.745)
+
+[node name="Icosphere" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Boozook/Armature/Skeleton3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.51)
+
+[node name="Plane_003" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Boozook/Armature/Skeleton3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.225, 0, 0)
+
+[node name="GunTest" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="4"]
 damage = 5.0
+
+[node name="Cylinder_003" parent="CameraNode/shakeable_camera/WeaponManager/Close" index="1"]
+transform = Transform3D(0.014854, -0.000592907, 0.00200162, 0, 0.0143823, 0.00426022, -0.00208759, -0.00421877, 0.0142423, 0.045, -0.733, 0.315)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -804,9 +822,12 @@ wait_time = 0.1
 [node name="dash_timer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="Center" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
 [connection signal="timeout" from="Componetns/Health_Component/Timer" to="Componetns/Health_Component" method="_on_timer_timeout"]
 [connection signal="area_entered" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_entered"]
 [connection signal="area_exited" from="WallHitbox" to="Componetns/Parkour_Component" method="_on_wall_hitbox_area_exited"]
 [connection signal="timeout" from="Kayot_Jump" to="." method="_on_kayot_jump_timeout"]
 
-[editable path="CameraNode/shakeable_camera/Camera3D/WeaponManager"]
+[editable path="CameraNode/shakeable_camera/WeaponManager"]

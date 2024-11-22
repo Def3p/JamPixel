@@ -6,14 +6,15 @@ enum states { CHANGE, IDLE, SHOOT, RELOAD }
 @export var max_weapons: int = 2
 @export var state: states
 @export var start_weapon: Gun
+@export var is_shoot: bool = false
 
-var load_shoot_path = preload("res://scenes/entity/player/weapon_manager/shoot_path.tscn")
+var load_tracer = preload("res://scenes/entity/player/weapon_manager/shoot_tracer.tscn")
 
 var weapons_list = []
 var available_weapons = []
 var current_weapon: int = 0
 var last_weapon: int = -1
-var want_shoot = true
+var want_shoot = false
 var damage
 
 @onready var cast_marker: Marker3D = $CastMarker
@@ -21,15 +22,18 @@ var damage
 @onready var shoot_ray: RayCast3D = $ShootRaycast
 @onready var interaction_ray: RayCast3D = $InteractionRaycast
 @onready var trauma_causer: Area3D = $trauma_causer
+@onready var impulse_marker: Marker3D = $ImpulseMarker
+@onready var trace: Marker3D = $Trace
 
 func _ready() -> void:
+	is_shoot = false
 	for child in weapons.get_children(): if child is Gun: 
 		if child.max_ammo < child.amount_ammo: 
 			child.amount_ammo = child.max_ammo
 		weapons_list.append(child)
 		child.hide()
 	available_weapons.append(start_weapon)
-	add_weapon("pistol")
+	add_weapon("boozook")
 
 
 func _process(_delta: float) -> void:
@@ -102,6 +106,7 @@ func weapon_initialization():
 func state_machine():
 	if state == states.IDLE:
 		var get_gun = available_weapons[current_weapon]
+		if get_gun.is_idle: get_gun.animator.play("idle")
 		if Input.is_action_pressed("shoot"): 
 			if get_gun.infinity: state = states.SHOOT
 			elif get_gun.amount_ammo > 0: state = states.SHOOT
@@ -116,7 +121,7 @@ func state_machine():
 	if state == states.SHOOT:
 		var get_gun = available_weapons[current_weapon]
 		get_gun.animator.play("shoot")
-		shoot()
+		if is_shoot and !want_shoot: shoot()
 
 	if state == states.RELOAD:
 		var get_gun = available_weapons[current_weapon]
@@ -124,17 +129,30 @@ func state_machine():
 
 
 func shoot():
-	if want_shoot:
-		want_shoot = false
-		var get_gun = available_weapons[current_weapon]
-		get_gun.animator.play("shoot")
-		if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
-		if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
-			shoot_ray.get_collider().get_parent().damage(get_gun.damage)
+	want_shoot = true
+	var get_gun = available_weapons[current_weapon]
+	trauma_causer.trauma_amount = get_gun.trauma
+	trauma_causer.cause_trauma()
+	var tracer = load_tracer.instantiate()
+	get_tree().root.add_child(tracer)
+	if get_gun.muzzle != null:
+		if shoot_ray.is_colliding():
+			tracer.init_tracer(shoot_ray.get_collision_point(), get_gun.muzzle.global_position)
+		else:
+			trace.position.z = -(get_gun.length)
+			tracer.init_tracer(trace.global_position, get_gun.muzzle.global_position)
+	global_var.player.impulse(get_gun.impulse, impulse_marker.global_position)
+	if !get_gun.infinity: available_weapons[current_weapon].amount_ammo -= 1
+	if shoot_ray.is_colliding() and shoot_ray.get_collider() is HitboxComponent:
+		shoot_ray.get_collider().get_parent().damage(get_gun.damage)
+	is_shoot = false
 
 
 func animation_finished(anim):
 	var get_gun = available_weapons[current_weapon]
+	#if anim == "idle": 
+		#get_gun.animator("idle")
+		#return
+	want_shoot = false
 	state = states.IDLE
-	want_shoot = true
 	if anim == "reload": get_gun.amount_ammo = get_gun.max_ammo

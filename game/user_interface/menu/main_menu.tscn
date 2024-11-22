@@ -31,6 +31,7 @@ grow_vertical = 2
 script = ExtResource("1_dk1xw")
 
 [node name="ColorRect" type="ColorRect" parent="Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

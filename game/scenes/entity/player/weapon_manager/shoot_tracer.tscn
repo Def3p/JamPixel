@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1unqt4ltycew"]
+
+[ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/shoot_tracer.gd" id="1_2tq4j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhtx2"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+heightmap_scale = 16.0
+point_size = 0.1
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mkstd"]
+
+[node name="ShootTracer" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_mhtx2")
+mesh = SubResource("ImmediateMesh_mkstd")
+script = ExtResource("1_2tq4j")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

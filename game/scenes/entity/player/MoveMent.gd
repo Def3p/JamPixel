@@ -20,6 +20,12 @@ var wall_run = false
 
 var parkour_dir
 
+@onready var weapon_manager: WeaponManager = $WeaponManager
+@onready var center: Marker3D = $Center
+
+func _ready() -> void:
+	global_var.player = self
+
 func _physics_process(delta: float) -> void:
 	stamine_logic()
 	parkour_dir = Vector3(0, 0, -1).rotated(Vector3.UP, global_rotation.y)
@@ -81,6 +87,7 @@ func stamine_logic():
 			await stamine_reload.timeout
 			stamine_reload.stop()
 			#020
-			
-			
-			
+
+
+func impulse(imp, vector):
+	velocity += (center.global_position - vector) * imp * 10.0
