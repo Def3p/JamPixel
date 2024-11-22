@@ -20,7 +20,7 @@ var wall_run = false
 
 var parkour_dir
 
-@onready var weapon_manager: WeaponManager = $WeaponManager
+@onready var weapon_manager: WeaponManager = $CameraNode/shakeable_camera/WeaponManager
 @onready var center: Marker3D = $Center
 
 func _ready() -> void:

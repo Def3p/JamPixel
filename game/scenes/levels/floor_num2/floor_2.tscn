@@ -57,7 +57,7 @@ data = PackedVector3Array(-2.4686, 8.4782, -4.7388, -3.963, 0, -4.7388, -3.963, 
 
 [node name="floor2" type="Node3D" node_paths=PackedStringArray("spawn_pos")]
 script = ExtResource("1_p5por")
-spawn_pos = NodePath("Spawn_Player")
+spawn_pos = NodePath("elevator/Spawn_Player_Node")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jaex8")
@@ -81,8 +81,10 @@ shape = SubResource("ConcavePolygonShape3D_qseik")
 [node name="Spawn_Player" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6628, 1.42372, -10.64)
 
+[node name="mob_spawn_manager" parent="." instance=ExtResource("4_q3wn7")]
+
 [node name="elevator" parent="." instance=ExtResource("3_x6p2r")]
-transform = Transform3D(2.84519, 0, 0, 0, 2.84519, 0, 0, 0, 2.84519, -28.8306, -5.98133e-07, -10.1986)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, -28.3077, -5.98133e-07, 11.3671)
 elevator_type = "lower"
 
-[node name="mob_spawn_manager" parent="." instance=ExtResource("4_q3wn7")]
+[editable path="elevator"]
