@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wtb2mycvvg82"
+path="res://.godot/imported/HUB (1).mp3-7f550daaf2db43963345b6d56d23de26.mp3str"
+
+[deps]
+
+source_file="res://scenes/levels/zone_0/HUB (1).mp3"
+dest_files=["res://.godot/imported/HUB (1).mp3-7f550daaf2db43963345b6d56d23de26.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

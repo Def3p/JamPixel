@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=4 uid="uid://byx4cf6jxgyjc"]
+[gd_scene load_steps=77 format=4 uid="uid://byx4cf6jxgyjc"]
 
 [ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="5_trnxv"]
 [ext_resource type="Shader" uid="uid://8ny7s8cllmmq" path="res://assets/shaders/Grass_Test.tres" id="5_yyurb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/buy_weapon.gd" id="7_0etm2"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="8_3arqx"]
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/gun_resource.gd" id="9_3xoyq"]
+[ext_resource type="AudioStream" uid="uid://cxq785f480asn" path="res://assets/audio/music/HUB (1).mp3" id="10_kilq5"]
 [ext_resource type="PackedScene" uid="uid://db32tgd8wi0rl" path="res://scenes/rigid_weapons/gun_test.tscn" id="10_m3axh"]
 [ext_resource type="AudioStream" uid="uid://dpvmfu0xvpu6b" path="res://assets/audio/sfx/book_shoot/Book (2).wav" id="11_6j40v"]
 [ext_resource type="AudioStream" uid="uid://dngdrpncnpy5j" path="res://assets/audio/sfx/shoot_gun/z_uki-vystrel-iz-pistoleta (mp3cut.net) (1).mp3" id="12_xn5r5"]
@@ -1860,3 +1861,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_v1ajh")
 libraries = {
 "": SubResource("AnimationLibrary_dgyh0")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_kilq5")
+volume_db = -22.811
+autoplay = true
+bus = &"Music"
