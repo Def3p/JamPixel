@@ -1727,6 +1727,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09, -0.35, -1.107)
 script = ExtResource("2_ofhir")
 weapon_name = "sword"
 max_ammo = 10
+amount_ammo = 10
 trauma = 2.0
 length = 20.0
 damage = 15.0

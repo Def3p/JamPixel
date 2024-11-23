@@ -150,9 +150,6 @@ func shoot():
 
 func animation_finished(anim):
 	var get_gun = available_weapons[current_weapon]
-	#if anim == "idle": 
-		#get_gun.animator("idle")
-		#return
 	want_shoot = false
 	state = states.IDLE
 	if anim == "reload": get_gun.amount_ammo = get_gun.max_ammo

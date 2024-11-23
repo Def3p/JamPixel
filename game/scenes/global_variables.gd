@@ -2,6 +2,7 @@ class_name GlobalVar
 extends Node
 
 var player: MoveMent
+var coins: int = 0
 
 # settings audio
 var master_volume: float

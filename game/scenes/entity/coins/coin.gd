@@ -7,4 +7,5 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area is HitboxComponent:
+		global_var.coins += 1
 		queue_free()

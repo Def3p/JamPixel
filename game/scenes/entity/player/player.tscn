@@ -232,12 +232,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.849, -0.394, 0)
 
 [node name="Sword" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="0"]
 visible = false
-amount_ammo = 10
 trauma = 0.0
 damage = 25.0
 
 [node name="MeshInstance3D" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Sword" index="0"]
-transform = Transform3D(0.0259075, -0.0130776, 0.00328997, -0.000127532, 0.0299709, 0.157166, -0.00218761, -0.156623, 0.0298001, -0.0134009, -0.128072, -0.0955554)
 surface_material_override/0 = null
 
 [node name="Pistol" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="1"]
@@ -662,6 +660,7 @@ visibility_layer = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 20
 
 [node name="Label" type="Label" parent="2D"]
 light_mask = 0
