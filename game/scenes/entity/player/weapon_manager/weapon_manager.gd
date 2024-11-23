@@ -32,11 +32,12 @@ func _ready() -> void:
 			child.amount_ammo = child.max_ammo
 		weapons_list.append(child)
 		child.hide()
+		child.amount_ammo = child.max_ammo
 	available_weapons.append(start_weapon)
-	add_weapon("pistol")
 
 
 func _process(_delta: float) -> void:
+	print(available_weapons[current_weapon].amount_ammo)
 	global_var.weapons = available_weapons
 	debug_output.data_initialization(2, "guns: " + str(len(available_weapons)))
 	if interaction_ray.is_colliding(): HUD.use_indicator.show()

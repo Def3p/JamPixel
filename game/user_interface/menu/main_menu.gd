@@ -10,8 +10,8 @@ extends Node
 @onready var yes_exit_button: Button = %YesExitConfirmButton
 @onready var no_exit_button: Button = %NoExitConfirmButton
 
-@onready var play: TextureButton = %Play
-@onready var settings: TextureButton = %Settings
+@onready var play = $Buttons/VBoxButtons/Button
+@onready var settings = $Buttons/VBoxButtons/Button2
 
 
 func _enter_tree() -> void: HUD.hide()
@@ -39,7 +39,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_play_pressed() -> void: 
-	get_tree().change_scene_to_file("res://scenes/levels/test/test_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/zone_0/zone_0.tscn")
 
 func _on_settings_pressed() -> void:
 	settings_menu.visible = not settings_menu.visible

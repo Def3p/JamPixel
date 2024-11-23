@@ -24,10 +24,10 @@ var parkour_dir
 
 @onready var weapon_manager: WeaponManager = $CameraNode/shakeable_camera/WeaponManager
 @onready var center: Marker3D = $Center
-@onready var coins: Label = $"2D/Coins"
 
 func _ready() -> void:
 	global_var.player = self
+	HUD.show()
 
 func _physics_process(delta: float) -> void:
 	stamine_logic()

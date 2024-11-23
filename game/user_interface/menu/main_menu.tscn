@@ -1,9 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b512tyjmgxou4"]
+[gd_scene load_steps=9 format=3 uid="uid://b512tyjmgxou4"]
 
 [ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="1_dk1xw"]
-[ext_resource type="Texture2D" uid="uid://dcn1ysglvqp1f" path="res://assets/art/ui/SETTINGS.png" id="2_pe08p"]
 [ext_resource type="Script" path="res://user_interface/menu/view.gd" id="2_vpwlj"]
-[ext_resource type="Texture2D" uid="uid://boyqb8ljgtp4s" path="res://assets/art/ui/SETTINGS_FOCUSED.png" id="3_ltvli"]
 [ext_resource type="Texture2D" uid="uid://cw23up1fk4n7n" path="res://assets/art/sky_texture/8k_stars_milky_way.jpg" id="4_8lhoj"]
 [ext_resource type="Script" path="res://user_interface/menu/settings.gd" id="4_dv6ub"]
 [ext_resource type="PackedScene" uid="uid://bwackqfgkri0p" path="res://scenes/gui/settings/settings_parameter.tscn" id="4_vqr2x"]
@@ -56,22 +54,15 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Play" type="TextureButton" parent="Menu/Buttons/VBoxButtons"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 100)
+[node name="Button" type="Button" parent="Menu/Buttons/VBoxButtons"]
 layout_mode = 2
-texture_normal = ExtResource("2_pe08p")
-texture_focused = ExtResource("3_ltvli")
-stretch_mode = 5
+theme_override_font_sizes/font_size = 40
+text = "Play"
 
-[node name="Settings" type="TextureButton" parent="Menu/Buttons/VBoxButtons"]
-unique_name_in_owner = true
-texture_filter = 1
-custom_minimum_size = Vector2(0, 100)
+[node name="Button2" type="Button" parent="Menu/Buttons/VBoxButtons"]
 layout_mode = 2
-texture_normal = ExtResource("2_pe08p")
-texture_focused = ExtResource("3_ltvli")
-stretch_mode = 5
+theme_override_font_sizes/font_size = 40
+text = "Setting"
 
 [node name="SettingsMenu" type="MarginContainer" parent="Menu"]
 unique_name_in_owner = true
@@ -281,3 +272,6 @@ visible = false
 [node name="Camera3D" type="Camera3D" parent="View"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6974)
 current = true
+
+[connection signal="pressed" from="Menu/Buttons/VBoxButtons/Button" to="Menu" method="_on_play_pressed"]
+[connection signal="pressed" from="Menu/Buttons/VBoxButtons/Button2" to="Menu" method="_on_settings_pressed"]
