@@ -33,10 +33,11 @@ func _ready() -> void:
 		weapons_list.append(child)
 		child.hide()
 	available_weapons.append(start_weapon)
-	add_weapon("boozook")
+	add_weapon("pistol")
 
 
 func _process(_delta: float) -> void:
+	global_var.weapons = available_weapons
 	debug_output.data_initialization(2, "guns: " + str(len(available_weapons)))
 	if interaction_ray.is_colliding(): HUD.use_indicator.show()
 	else: HUD.use_indicator.hide()
