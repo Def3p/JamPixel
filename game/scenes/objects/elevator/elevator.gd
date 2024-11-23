@@ -42,8 +42,10 @@ func move():
 	await change_scene_timer.timeout
 	if elevator_type == "lower" and state == States.Close:
 		get_tree().change_scene_to_file.bind("res://scenes/levels/zone_0/zone_0.tscn").call_deferred()
-	if batteries.size() == 0 and elevator_type == "upper" and state == States.Close:
+	if global_var.energy == 0 and elevator_type == "upper" and state == States.Close:
 		get_tree().change_scene_to_file.bind("res://scenes/levels/floor_num2/floor_2.tscn").call_deferred()
+	elif global_var.energy == 1 and elevator_type == "upper" and state == States.Close:
+		get_tree().change_scene_to_file.bind("res://scenes/levels/test/test_level.tscn").call_deferred()
 
 func darkness():
 	$dark_timer.start()
