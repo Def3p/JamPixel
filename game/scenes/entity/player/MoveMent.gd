@@ -2,12 +2,14 @@ class_name MoveMent
 
 extends CharacterBody3D
 
+@export var step_sound_component : Step_Sounds_Component
 @export var _Health_Component : HealthComponent
 
 @export var def_speed : float
 @export var kayot_timer : Timer
 @export var stamine_timer : Timer
 @export var stamine_reload : Timer
+
 
 var speed = 5.0
 var JUMP_VELOCITY = 8
@@ -47,6 +49,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, direction.x * speed * 1.2, 20 * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed * 1.2, 20 * delta)
 		going = true
+		if !runing:
+			step_sound_component.stepping(0.5)
+		else:
+			step_sound_component.stepping(0.2)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)

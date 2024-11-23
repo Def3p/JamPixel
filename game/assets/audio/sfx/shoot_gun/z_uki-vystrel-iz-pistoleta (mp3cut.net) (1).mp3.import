@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dngdrpncnpy5j"
+path="res://.godot/imported/z_uki-vystrel-iz-pistoleta (mp3cut.net) (1).mp3-3b51040b7bba22fe21664a6790d90d08.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/sfx/shoot_gun/z_uki-vystrel-iz-pistoleta (mp3cut.net) (1).mp3"
+dest_files=["res://.godot/imported/z_uki-vystrel-iz-pistoleta (mp3cut.net) (1).mp3-3b51040b7bba22fe21664a6790d90d08.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

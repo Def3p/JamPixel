@@ -1,20 +1,37 @@
-[gd_scene load_steps=31 format=3 uid="uid://1k67il0esykk"]
+[gd_scene load_steps=41 format=3 uid="uid://1k67il0esykk"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/MoveMent.gd" id="1_ih8mb"]
 [ext_resource type="Texture2D" uid="uid://cvctr1wgkdbv8" path="res://addons/godot-prototype-texture/PNG/logo_512x512/logo_red_512x512.png" id="2_3sjsy"]
+[ext_resource type="AudioStream" uid="uid://5knc6qrpy4ng" path="res://assets/audio/sfx/step/def_step/wova-zvuki-shagi-beg-po-betonnomu-polu (mp3cut.net) (1).mp3" id="2_dyaux"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/camera_componemt.gd" id="3_006l0"]
+[ext_resource type="AudioStream" uid="uid://dftuapccasttj" path="res://assets/audio/sfx/step/def_step/wova-zvuki-shagi-beg-po-betonnomu-polu (mp3cut.net) (2).mp3" id="3_ysm61"]
 [ext_resource type="PackedScene" uid="uid://ck60qxk0frxvx" path="res://components/hitbox_component/hitbox.tscn" id="4_h1kta"]
+[ext_resource type="AudioStream" uid="uid://02il4xmd75lk" path="res://assets/audio/sfx/step/def_step/wova-zvuki-shagi-beg-po-betonnomu-polu (mp3cut.net) (3).mp3" id="4_j32bd"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/parkpour_component.gd" id="4_pvs7c"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/health_component.gd" id="5_jdoi6"]
+[ext_resource type="AudioStream" uid="uid://b0l7wqdevq2ac" path="res://assets/audio/sfx/step/def_step/wova-zvuki-shagi-beg-po-betonnomu-polu (mp3cut.net) (4).mp3" id="5_jynvr"]
 [ext_resource type="Shader" path="res://assets/shaders/pixelization/sa.gdshader" id="6_0v7b8"]
+[ext_resource type="AudioStream" uid="uid://dhlaid5icn15x" path="res://assets/audio/sfx/step/def_step/wova-zvuki-shagi-beg-po-betonnomu-polu (mp3cut.net) (5).mp3" id="6_hns2e"]
 [ext_resource type="Script" path="res://scenes/entity/player/components/bars_component.gd" id="6_ig83q"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="6_lise4"]
 [ext_resource type="PackedScene" uid="uid://ck4co6nljvs6" path="res://scenes/entity/player/weapon_manager/weapon_manager.tscn" id="7_6kblb"]
+[ext_resource type="AudioStream" uid="uid://dr5wwtx7qs1ya" path="res://assets/audio/sfx/step/def_step/wova-zvuki-shagi-beg-po-betonnomu-polu (mp3cut.net).mp3" id="7_ev8dw"]
 [ext_resource type="Script" path="res://components/camera/shakeable_camera.gd" id="7_umfex"]
 [ext_resource type="Texture2D" uid="uid://8o0hdem0tsc2" path="res://assets/art/bars/HP/Stamina_-_0.png" id="9_or6lt"]
 [ext_resource type="Texture2D" uid="uid://bryjxb8h5qtfg" path="res://assets/art/bars/HP/Stamina_-_1 (1).png" id="10_32y7y"]
 [ext_resource type="Texture2D" uid="uid://c04dttknt3ani" path="res://assets/art/bars/stamine/HP_-_0.png" id="11_vhq1y"]
 [ext_resource type="Texture2D" uid="uid://b57ikg1fhl22o" path="res://assets/art/bars/stamine/HP_-_1.png" id="12_4xrw8"]
+[ext_resource type="Script" path="res://scenes/entity/player/components/step_sounds_component.gd" id="13_pq4ok"]
+[ext_resource type="PackedScene" uid="uid://db32tgd8wi0rl" path="res://scenes/rigid_weapons/gun_test.tscn" id="17_gqcrt"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lgot6"]
+streams_count = 6
+stream_0/stream = ExtResource("2_dyaux")
+stream_1/stream = ExtResource("3_ysm61")
+stream_2/stream = ExtResource("4_j32bd")
+stream_3/stream = ExtResource("5_jynvr")
+stream_4/stream = ExtResource("6_hns2e")
+stream_5/stream = ExtResource("7_ev8dw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_adggw"]
 albedo_texture = ExtResource("2_3sjsy")
@@ -39,6 +56,8 @@ shader_parameter/contrast = 1.0
 shader_parameter/shift = 0.0
 shader_parameter/grayscale = false
 shader_parameter/use_palette = false
+
+[sub_resource type="BoxMesh" id="BoxMesh_gyxwj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vknlh"]
 
@@ -151,15 +170,32 @@ size = Vector3(1.1095, 1.97218, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eb13h"]
 radius = 0.606834
 
-[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("_Health_Component", "kayot_timer", "stamine_timer", "stamine_reload")]
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("step_sound_component", "_Health_Component", "kayot_timer", "stamine_timer", "stamine_reload")]
 collision_mask = 7
 floor_max_angle = 1.43117
 script = ExtResource("1_ih8mb")
+step_sound_component = NodePath("Componetns/Step_Sounds_Component")
 _Health_Component = NodePath("Componetns/Health_Component")
 def_speed = 5.0
 kayot_timer = NodePath("Kayot_Jump")
 stamine_timer = NodePath("Stamina")
 stamine_reload = NodePath("Stamine_reload")
+
+[node name="Sounds" type="Node3D" parent="."]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sounds"]
+stream = SubResource("AudioStreamRandomizer_lgot6")
+volume_db = -10.0
+bus = &"Effects"
+doppler_tracking = 2
+
+[node name="RayCast3D" type="RayCast3D" parent="Sounds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0134096, 0)
+target_position = Vector3(0, -0.1, 0)
+collision_mask = 2
+hit_from_inside = true
+
+[node name="play_step_sounds_timer" type="Timer" parent="Sounds"]
 
 [node name="Meshes" type="Node3D" parent="."]
 
@@ -196,6 +232,12 @@ script = ExtResource("6_ig83q")
 Health_Component = NodePath("../Health_Component")
 Move_Ment = NodePath("../..")
 
+[node name="Step_Sounds_Component" type="Node" parent="Componetns" node_paths=PackedStringArray("def_step_sound", "floor_collider", "timer")]
+script = ExtResource("13_pq4ok")
+def_step_sound = NodePath("../../Sounds/AudioStreamPlayer3D")
+floor_collider = NodePath("../../Sounds/RayCast3D")
+timer = NodePath("../../Sounds/play_step_sounds_timer")
+
 [node name="CameraNode" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.60816, 0)
 
@@ -231,7 +273,7 @@ grow_vertical = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.849, -0.394, 0)
 
 [node name="Sword" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="0"]
-visible = false
+is_idle = false
 amount_ammo = 10
 trauma = 0.0
 damage = 25.0
@@ -241,22 +283,34 @@ transform = Transform3D(0.0259075, -0.0130776, 0.00328997, -0.000127532, 0.02997
 surface_material_override/0 = null
 
 [node name="Pistol" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="1"]
-visible = false
-is_cast = true
 max_ammo = 3
 amount_ammo = 0
 impulse = 0.0
 infinity = false
 is_reload = true
 trauma = 0.0
-damage = 80.0
+damage = 20.0
 
 [node name="Minigun" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="3"]
-visible = false
 amount_ammo = 8
 
-[node name="GunTest" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="4"]
-damage = 5.0
+[node name="GunTest" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList" index="4" node_paths=PackedStringArray("muzzle")]
+weapon_name = "PP"
+is_cast = true
+max_ammo = 5
+damage = 10.0
+muzzle = NodePath("Marker3D2")
+cast_weapon = ExtResource("17_gqcrt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/GunTest" index="1"]
+transform = Transform3D(0.196997, 0, 0, 0, 0.289283, 0, 0, 0, 1.13815, 0.847304, -0.393945, -1.05313)
+mesh = SubResource("BoxMesh_gyxwj")
+
+[node name="Cube" parent="CameraNode/shakeable_camera/WeaponManager/WeaponsList/Gun2" index="0"]
+transform = Transform3D(0.502175, 0, 0, 0, 0.603658, 0, -4.65661e-10, 0, 1, 0, -0.476315, 9.04193)
+
+[node name="MeshInstance3D" parent="CameraNode/shakeable_camera/WeaponManager/Close" index="0"]
+transform = Transform3D(0.14985, 0.000271156, 0.00504781, -0.00346693, 0.0997389, 0.0530503, -0.0057453, -0.0531138, 0.0996453, 0.033, 0.187, 0.03)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

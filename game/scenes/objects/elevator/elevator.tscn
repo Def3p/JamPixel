@@ -1,7 +1,10 @@
-[gd_scene load_steps=74 format=4 uid="uid://cmlyrmfg1iwxo"]
+[gd_scene load_steps=77 format=4 uid="uid://cmlyrmfg1iwxo"]
 
 [ext_resource type="Script" path="res://scenes/objects/elevator/elevator.gd" id="1_6vi0h"]
+[ext_resource type="AudioStream" uid="uid://4na5p02hjoau" path="res://assets/audio/sfx/elevator/737948__tickytac__old-elevator-chime.wav" id="3_idvfw"]
+[ext_resource type="AudioStream" uid="uid://dco31mo37qk3n" path="res://assets/audio/sfx/elevator/564409__valentinpetiteau__0_lift_full.wav" id="4_bamel"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="4_s8h2a"]
+[ext_resource type="AudioStream" uid="uid://co6s7fl2qcpbj" path="res://assets/audio/sfx/button_pressed/367852__jofae__button-pressed.mp3" id="5_yvtwk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p73mu"]
 size = Vector3(0.523056, 0.341577, 0.349609)
@@ -743,6 +746,33 @@ size = Vector3(0.0471697, 5.95863, 4.18289)
 [sub_resource type="BoxShape3D" id="BoxShape3D_10g8v"]
 size = Vector3(4.48038, 5.95863, 0.0571976)
 
+[sub_resource type="Animation" id="Animation_1kxx8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Elevator/left_door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-10.8298, 0.0882922, 19.9445)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Elevator/right_door:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-14.287, 0, 19.9445)]
+}
+
 [sub_resource type="Animation" id="Animation_r2v3s"]
 resource_name = "close"
 tracks/0/type = "value"
@@ -797,38 +827,26 @@ tracks/1/keys = {
 "values": [Vector3(-14.287, 0, 19.9445)]
 }
 
-[sub_resource type="Animation" id="Animation_1kxx8"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0eplm"]
+_data = {
+"RESET": SubResource("Animation_1kxx8"),
+"close": SubResource("Animation_r2v3s"),
+"open": SubResource("Animation_tvgwm")
+}
+
+[sub_resource type="Animation" id="Animation_3705b"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Elevator/left_door:position")
+tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-10.8298, 0.0882922, 19.9445)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Elevator/right_door:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-14.287, 0, 19.9445)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0eplm"]
-_data = {
-"RESET": SubResource("Animation_1kxx8"),
-"close": SubResource("Animation_r2v3s"),
-"open": SubResource("Animation_tvgwm")
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_jquwr"]
@@ -845,21 +863,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_3705b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bxnsp"]
@@ -882,6 +885,10 @@ object = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitboxComponent"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95534, 1.21576, -0.811901)
+shape = SubResource("BoxShape3D_p73mu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="HitboxComponent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.95534, 1.6553, -0.811901)
 shape = SubResource("BoxShape3D_p73mu")
 
 [node name="check_player" type="Area3D" parent="."]
@@ -1073,6 +1080,26 @@ color = Color(0, 0, 0, 0)
 libraries = {
 "": SubResource("AnimationLibrary_bxnsp")
 }
+
+[node name="dzin" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5.00337, 0)
+stream = ExtResource("3_idvfw")
+bus = &"Effects"
+
+[node name="going" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 5.00337, 0)
+stream = ExtResource("4_bamel")
+volume_db = -28.952
+bus = &"Effects"
+
+[node name="button_pressed" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 1.80654, 2.16917, -0.963667)
+stream = ExtResource("5_yvtwk")
+volume_db = -29.273
+bus = &"Effects"
 
 [connection signal="area_entered" from="check_player" to="." method="_on_check_player_area_entered"]
 [connection signal="area_exited" from="check_player" to="." method="_on_check_player_area_exited"]

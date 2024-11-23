@@ -12,7 +12,9 @@ enum States {Close, Open}
 @export var state : States = States.Open
 
 func _ready() -> void:
+	%dzin.play()
 	animator.play("open")
+	
 
 func interaction(num):
 	if player and change_scene_timer.is_stopped():
@@ -36,6 +38,7 @@ func _on_check_player_area_exited(area: Area3D) -> void:
 		
 func move():
 	change_scene_timer.start()
+	%going.play()
 	await change_scene_timer.timeout
 	if elevator_type == "lower" and state == States.Close:
 		get_tree().change_scene_to_file.bind("res://scenes/levels/zone_0/zone_0.tscn").call_deferred()
