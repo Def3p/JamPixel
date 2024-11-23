@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b512tyjmgxou4"]
+[gd_scene load_steps=10 format=3 uid="uid://b512tyjmgxou4"]
 
 [ext_resource type="Script" path="res://user_interface/menu/main_menu.gd" id="1_dk1xw"]
 [ext_resource type="Script" path="res://user_interface/menu/view.gd" id="2_vpwlj"]
 [ext_resource type="Texture2D" uid="uid://cw23up1fk4n7n" path="res://assets/art/sky_texture/8k_stars_milky_way.jpg" id="4_8lhoj"]
 [ext_resource type="Script" path="res://user_interface/menu/settings.gd" id="4_dv6ub"]
 [ext_resource type="PackedScene" uid="uid://bwackqfgkri0p" path="res://scenes/gui/settings/settings_parameter.tscn" id="4_vqr2x"]
+[ext_resource type="Texture2D" uid="uid://c3o37tnmltynn" path="res://assets/art/DD_-_SHOP.png" id="6_0qbvf"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xsv4s"]
 panorama = ExtResource("4_8lhoj")
@@ -18,6 +19,18 @@ sky = SubResource("Sky_xj82s")
 tonemap_mode = 2
 
 [node name="MainMenu" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -240.0
+offset_top = -210.0
+offset_right = 240.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_0qbvf")
 
 [node name="Menu" type="Control" parent="."]
 layout_mode = 3
