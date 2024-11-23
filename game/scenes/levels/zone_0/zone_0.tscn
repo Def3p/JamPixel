@@ -442,6 +442,19 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.86491)
 shape = SubResource("CapsuleShape3D_7u8ck")
 
+[node name="Label3D" type="Label3D" parent="Trader"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.93569, 1.74855)
+billboard = 1
+text = "Привет, сможешь 
+достать мне кое что ценное со дна
+. а я в замен предоставлю 
+тебе свои услуги торговца оружием
+ 
+Да?
+Вот  и отлично
+Удачи там.. внизуw"
+font_size = 62
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(0.971924, 0, -0.235295, 0, 1, 0, 0.235295, 0, 0.971924, 9.74922, 0, -7.58579)
 collision_layer = 2
