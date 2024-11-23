@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://vabdlqtryd3w"]
+
+[ext_resource type="Script" path="res://scenes/entity/coins/HP_coin.gd" id="1_tx4vl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xy46k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xi2sl"]
+albedo_color = Color(0, 1, 0, 1)
+rim_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_y8j0o"]
+material = SubResource("StandardMaterial3D_xi2sl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ujbee"]
+rim_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_jrn2h"]
+material = SubResource("StandardMaterial3D_ujbee")
+
+[node name="Coin" type="StaticBody3D"]
+script = ExtResource("1_tx4vl")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.303192, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.925534, 0)
+shape = SubResource("BoxShape3D_xy46k")
+
+[node name="Coin" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.22975, 0, 0, 0, 1.07737, 0, 0, 0, 1.07737, 0.000600888, 0.634485, -0.0154757)
+mesh = SubResource("BoxMesh_y8j0o")
+skeleton = NodePath("")
+
+[node name="Coin2" type="MeshInstance3D" parent="Coin"]
+transform = Transform3D(1, 0, 0, 0, 0.533829, 0, 0, 0, 0.12131, 0.771696, 0, 0.181709)
+mesh = SubResource("BoxMesh_jrn2h")
+skeleton = NodePath("")
+
+[node name="Coin3" type="MeshInstance3D" parent="Coin"]
+transform = Transform3D(1, 0, 0, 0, 0.533829, 0, 0, 0, 0.12131, 0.771696, 0, -0.253348)
+mesh = SubResource("BoxMesh_jrn2h")
+skeleton = NodePath("")
+
+[node name="Coin4" type="MeshInstance3D" parent="Coin"]
+transform = Transform3D(1, 0, 0, 0, 0.0971328, 0, 0, 0, 0.44001, 0.771696, 0, -0.0237334)
+mesh = SubResource("BoxMesh_jrn2h")
+skeleton = NodePath("")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

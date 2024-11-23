@@ -27,6 +27,7 @@ var possible_purpose
 
 var load_bone = preload("res://scenes/entity/remains/bones/Bones.tscn")
 var load_coin = preload("res://scenes/entity/coins/coin.tscn")
+var load_coin_hp = preload("res://scenes/entity/coins/HP_coin.tscn")
 
 
 func _physics_process(delta: float) -> void:
@@ -111,9 +112,16 @@ func died():
 	if HP <= 0:
 		var scene = get_tree().root
 		var coin = load_coin.instantiate()
+		var coin_hp = load_coin_hp.instantiate()
 		var bones = load_bone.instantiate()
-		add_child(coin)
 		add_child(bones)
-		coin.reparent(scene)
 		bones.reparent(scene)
+		var a = randi_range(1, 2)
+		if a == 1:
+			add_child(coin)
+			coin.reparent(scene)
+		else :
+			add_child(coin_hp)
+			coin_hp.reparent(scene)
 		self.queue_free()
+			
