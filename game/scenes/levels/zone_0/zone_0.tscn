@@ -1,11 +1,8 @@
-[gd_scene load_steps=79 format=4 uid="uid://byx4cf6jxgyjc"]
+[gd_scene load_steps=76 format=4 uid="uid://byx4cf6jxgyjc"]
 
-[ext_resource type="Texture2D" uid="uid://7mmy50gi6lir" path="res://assets/models/Lobby_Obj_1_painted_plaster_wall_diff_1k.jpg" id="4_sya74"]
 [ext_resource type="PackedScene" uid="uid://1k67il0esykk" path="res://scenes/entity/player/player.tscn" id="5_trnxv"]
-[ext_resource type="Texture2D" uid="uid://mrxe5yw121cv" path="res://assets/models/Lobby_Obj_1_painted_plaster_wall_rough.png" id="5_y3gqa"]
 [ext_resource type="Shader" uid="uid://8ny7s8cllmmq" path="res://assets/shaders/Grass_Test.tres" id="5_yyurb"]
 [ext_resource type="PackedScene" uid="uid://cmlyrmfg1iwxo" path="res://scenes/objects/elevator/elevator.tscn" id="6_15ijj"]
-[ext_resource type="Texture2D" uid="uid://bs5luabj48a4e" path="res://assets/models/Lobby_Obj_1_painted_plaster_wall_nor_gl.png" id="6_tcp1w"]
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/buy_weapon.gd" id="7_0etm2"]
 [ext_resource type="Script" path="res://components/hitbox_component/hitbox_component.gd" id="8_3arqx"]
 [ext_resource type="Script" path="res://scenes/entity/player/weapon_manager/gun_resource.gd" id="9_3xoyq"]
@@ -318,13 +315,9 @@ size = Vector3(1, 5.47119, 6.39899)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8nuej"]
 resource_name = "painted_plaster_wall"
 cull_mode = 2
-albedo_texture = ExtResource("4_sya74")
-metallic_texture = ExtResource("5_y3gqa")
 metallic_texture_channel = 2
-roughness_texture = ExtResource("5_y3gqa")
 roughness_texture_channel = 1
 normal_enabled = true
-normal_texture = ExtResource("6_tcp1w")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_roap1"]
 resource_name = "Material.004"
