@@ -1,6 +1,7 @@
 class_name GlobalVar
 extends Node
 
+var weapons: Array = []
 var player: MoveMent
 var coins: int = 0
 var energy: int = 0
